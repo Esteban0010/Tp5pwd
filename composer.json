@@ -1,0 +1,15 @@
+{
+    "name": "pwd/librerias",
+    "type": "proyect",
+    "require": {
+        "google/cloud-language": "dev-main"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Esteban Martin Pilchuman",
+            "email": "estebanpilchuman02@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
