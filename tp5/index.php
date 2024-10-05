@@ -1,32 +1,49 @@
 <?php
 
-
-$config = include('config/config.php');
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use Google\Cloud\Language\LanguageClient;
 
+class SentimentAnalyzer {
+    private $languageClient;
 
-$languageClient = new LanguageClient([
-    'projectId' => $config['google_project_id'],
-    'keyFilePath' => '/configuracion.php' // ruta a tu archivo de credenciales
-]);;
-$documento = $languageClient->analyzeSentiment($texto);
-$sentimiento = $documento->sentiment();
-     function __construct() {
-        $config = include('config/config.php');
-      $languageClient = new LanguageClient([
+    public function __construct() {
+        $config = include('./configuracion.php');
+        $this->languageClient = new LanguageClient([
             'projectId' => $config['google_project_id'],
-            'keyFilePath' => '/path/to/your/keyfile.json' // ruta a tu archivo de credenciales
+            'keyFilePath' => '../analisis-de-datos-437621-f4b9e9b5a2af.json' // ruta a tu archivo de credenciales
         ]);
     }
 
-     function analizarSentimiento($texto) {
-        $documento = $languageClient->analyzeSentiment($texto);
-        $sentimiento = $documento->sentiment();
-        
-        include_once('views/resultado_sentimiento.php');
+    public function analizarSentimiento($texto) {
+        $documento = $this->languageClient->analyzeSentiment($texto);
+        return $documento->sentiment();
     }
+}
 
+$texto = $_GET['msj'] ?? ''; // Obtener el valor del campo de formulario
+
+$analyzer = new SentimentAnalyzer();
+$sentimiento = $analyzer->analizarSentimiento($texto);
 
 ?>
+
+<div>
+    <form action="" method="get">
+        <label for="msj">Mensaje:</label>
+        <input name="msj" type="text">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p>
+        <?php
+        $sentimiento["magnitude"];
+       print_r($sentimiento);
+        if (isset($sentimiento["magnitude"])) {
+            echo "El sentimiento es: " . $sentimiento["magnitude"];
+        } else {
+            echo "No se encontró la magnitud.";
+        }
+        ?>
+    </p>
+</div>
