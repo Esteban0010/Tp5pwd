@@ -27,7 +27,16 @@ $analyzer = new SentimentAnalyzer();
 $sentimiento = $analyzer->analizarSentimiento($texto);
 
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 <div>
     <form action="" method="get">
         <label for="msj">Mensaje:</label>
@@ -46,4 +55,18 @@ $sentimiento = $analyzer->analizarSentimiento($texto);
         }
         ?>
     </p>
+
 </div>
+
+<?php session_start(); ?>
+<div>
+<?php
+$cmtx_identifier = '1';
+$cmtx_reference  = 'Page One';
+$cmtx_folder     = '/Tp5pwd/tp5/utils/comentarios/comments/';
+require($_SERVER['DOCUMENT_ROOT'] . $cmtx_folder . 'frontend/index.php');
+?>
+</div>
+</body>
+</html>
+
