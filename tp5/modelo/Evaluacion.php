@@ -10,22 +10,18 @@ class Evaluacion
     private $fecha_creacion;
     private $mensajeoperacion;
 
-    public function __construct()
+    public function __construct($aSentimiento, $aEntidades, $aSyntaxis)
     {
-        $this->aSentimiento = "";
-        $this->aEntidades = "";
-        $this->aSyntaxis = "";
-        $this->classText = "";
+        $this->aSentimiento = $aSentimiento;
+        $this->aEntidades = $aEntidades;
+        $this->aSyntaxis =$aSyntaxis;
     }
 
-    public function setear($id, $aSentimiento, $aEntidades, $aSyntaxis, $classText, $fecha_creacion)
+    public function setear( $aSentimiento, $aEntidades, $aSyntaxis)
     {
-        $this->setId($id);
         $this->setASentimiento($aSentimiento);
         $this->setAEntidades($aEntidades);
         $this->setASyntaxis($aSyntaxis);
-        $this->setClassText($classText);
-        $this->setFechaCreacion($fecha_creacion);
     }
 
     /*get*/
@@ -132,12 +128,10 @@ class Evaluacion
         $resp = false;
         $base = new BaseDatos();
 
-        $sql = "INSERT INTO evaluacion (sentimiento, entidades, syntaxis, class_text, fecha_creacion) VALUES (
+        $sql = "INSERT INTO evaluacion (sentimiento, entidades, syntaxis,) VALUES (
             '" . $this->getASentimiento() . "',
             '" . $this->getAEntidades() . "',
-            '" . $this->getASyntaxis() . "',
-            '" . $this->getClassText() . "',
-            '" . $this->getFechaCreacion() . "');";
+            '" . $this->getASyntaxis() ."');";
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {

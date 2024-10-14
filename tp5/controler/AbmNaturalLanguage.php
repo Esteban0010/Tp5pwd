@@ -9,10 +9,10 @@ class AbmNaturalLanguage {
     public function __construct()
     {
         // Configuración del cliente de Google Cloud Natural Language
-        $config = include('../configuracionn.php');
+        $config = include('../../configuracionn.php');
         $this->languageClient = new LanguageClient([
             'projectId' => $config['google_project_id'],
-            'keyFilePath' => '../../analisis-de-datos-437621-f4b9e9b5a2af.json' // Reemplaza con la ruta a tu archivo de credenciales
+            'keyFilePath' => '../../../analisis-de-datos-437621-f4b9e9b5a2af.json' // Reemplaza con la ruta a tu archivo de credenciales
         ]);
     }
 
@@ -38,7 +38,7 @@ class AbmNaturalLanguage {
             $syntaxisJson = json_encode($syntaxis);   // Guardamos la sintaxis como un JSON
 
             // Crea un objeto de la clase Evaluacion para guardar los resultados
-            $evaluacion = new Evaluacion($sentimientoScore, $entidadesJson, $syntaxisJson, $texto);
+            $evaluacion = new Evaluacion($sentimientoScore, $entidadesJson, $syntaxisJson);
 
             // Inserta la evaluación en la base de datos
             if ($evaluacion->insertar()) {

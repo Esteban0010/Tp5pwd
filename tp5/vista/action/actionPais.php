@@ -5,15 +5,12 @@ $datos = data_submitted();
 
 
 $pais = country($datos['pais']);
-
+// echo $pais;
+print_r($pais->getName());
 // Get all countries                            
 $paises = countries(); 
-echo "<br><br><div>". count($paises) . " paises hay en la libreria con códigos de países según la norma ISO 3166</div><br>";
+// echo "<br><br><div>". count($paises) . " paises hay en la libreria con códigos de países según la norma ISO 3166</div><br>";
 
-$texto = $_POST['msj'] ?? ''; // Obtener el valor del campo de formulario
-
-$analyzer = new SentimentAnalyzer();
-$sentimiento = $analyzer->analizarSentimiento($texto);
 ?>
 
 
@@ -27,6 +24,11 @@ $sentimiento = $analyzer->analizarSentimiento($texto);
 
 <body>
     <div>
+        <form action="./actionEvaluacion.php" method="post">
+            <label for="msj"></label>
+            <input type="text" name="msj">
+<button type="submit">enviar</button>
+        </form>
         <?php
         
          ?>

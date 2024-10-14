@@ -25,9 +25,9 @@ function verEstructura($e){
 
 spl_autoload_register(function ($class_name) {
     $directorys = array(
-        $_SESSION['ROOT'] . 'Modelo/',
-        $_SESSION['ROOT'] . 'Modelo/conector/',
-        $_SESSION['ROOT'] . 'Control/'
+        $_SESSION['ROOT'] . 'modelo/',
+        $_SESSION['ROOT'] . 'modelo/conector/',
+        $_SESSION['ROOT'] . 'controler/'
     );
 
     foreach ($directorys as $directory) {
