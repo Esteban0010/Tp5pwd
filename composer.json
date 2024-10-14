@@ -2,7 +2,8 @@
     "name": "pwd/librerias",
     "type": "proyect",
     "require": {
-        "google/cloud-language": "dev-main"
+        "google/cloud-language": "dev-main",
+        "rinvex/countries": "^8.1"
     },
     "license": "MIT",
     "authors": [

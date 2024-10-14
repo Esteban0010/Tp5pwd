@@ -9,7 +9,7 @@ class AbmNaturalLanguage {
     public function __construct()
     {
         // Configuración del cliente de Google Cloud Natural Language
-        $config = include('../configuracion.php');
+        $config = include('../configuracionn.php');
         $this->languageClient = new LanguageClient([
             'projectId' => $config['google_project_id'],
             'keyFilePath' => '../../analisis-de-datos-437621-f4b9e9b5a2af.json' // Reemplaza con la ruta a tu archivo de credenciales
