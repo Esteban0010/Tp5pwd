@@ -1,21 +1,20 @@
 <?php
-class AbmComentario {
+class AbmEvaluacion {
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
-     * @return Comentario
+     * @return Evaluacion
      */
     private function cargarObjeto($param) {
         $obj = null;
 
-        if( array_key_exists('id',$param) && array_key_exists('id_evaluacion',$param) && array_key_exists('email_autor',$param) && array_key_exists('comentario',$param) && array_key_exists('fecha_creacion',$param) && array_key_exists('pais',$param)){
+        if( array_key_exists('id',$param) && array_key_exists('sentimiento',$param) && array_key_exists('entidades',$param) && array_key_exists('syntaxis',$param)  && array_key_exists('class_text',$param) && array_key_exists('fecha_creacion',$param)){
 
-            $objEvaluacion=new Evaluacion();
-            $objEvaluacion->setId($param['id_evaluacion']);
-            $objEvaluacion->cargar();
+            $obj = new Evaluacion();            
 
-            $obj = new Comentario();
-            $obj->setear($param['id'],$objEvaluacion, $param['autor'], $param['email_autor'], $param['comentario'], $param['fecha_creacion'], $param['pais']);
+            $obj->setear($param['id'], $param['sentimiento'], $param['entidades'], $param['syntaxis'],
+            $param['class_text'],
+            $param['fecha_creacion'],);
 
         }
         return $obj;;
@@ -24,14 +23,14 @@ class AbmComentario {
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
      * @param array $param
-     * @return Comentario
+     * @return Evaluacion
      */
     private function cargarObjetoConClave($param) {
         $obj = null;
 
         if (isset($param['id'])) {
-            $obj = new Comentario();
-            $obj->setear($param['id'], null, null, null, null, null, null);
+            $obj = new Evaluacion();
+            $obj->setear($param['id'], null, null, null, null, null);
         }
         return $obj;
     }
@@ -41,6 +40,7 @@ class AbmComentario {
      * @param array $param
      * @return BOOLEAN
      */
+
     private function seteadosCamposClaves($param) {
         $resp = false;
         if (isset($param['id']))
@@ -60,7 +60,6 @@ class AbmComentario {
         }
         return $resp;
     }
-
     /**
      * Baja (B): Se refiere a eliminar un objeto o registro existente.
      * permite eliminar un objeto 
@@ -75,6 +74,7 @@ class AbmComentario {
                 $resp = true;
             }
         }
+
         return $resp;
     }
 
@@ -108,32 +108,28 @@ class AbmComentario {
                 $where .= " id = '" . $param['id'] . "'";
             }
 
-            if (isset($param['id_evaluacion'])) {
-                $where .= " id_evaluacion ='" . $param['id_evaluacion'] . "'";
+            if (isset($param['sentimientos'])) {
+                $where .= " sentimientos ='" . $param['sentimientos'] . "'";
             }
 
-            if (isset($param['autor'])) {
-                $where .= " autor ='" . $param['autor'] . "'";
+            if (isset($param['entidades'])) {
+                $where .= " entidades ='" . $param['entidades'] . "'";
             }
 
-            if (isset($param['email_autor'])) {
-                $where .= " email_autor = '" . $param['email_autor'] . "'";
+            if (isset($param['syntaxis'])) {
+                $where .= " syntaxis = '" . $param['syntaxis'] . "'";
             }
 
-            if (isset($param['comentario'])) {
-                $where .= " comentario ='" . $param['comentario'] . "'";
+            if (isset($param['class_text'])) {
+                $where .= " class_text ='" . $param['class_text'] . "'";
             }
 
             if (isset($param['fecha_creacion'])) {
                 $where .= " fecha_creacion ='" . $param['fecha_creacion'] . "'";
             }
-
-            if (isset($param['pais'])) {
-                $where .= " pais ='" . $param['pais'] . "'";
-            }
             
         }
-        $arreglo = Comentario::listar($where);
+        $arreglo = Evaluacion::listar($where);
         return $arreglo;
     }
 
@@ -149,22 +145,15 @@ class AbmComentario {
 
         if (count($arregloObjComentario) > 0) {
 
+
             foreach ($arregloObjComentario as $objComentario) {
                 $arrayComentario = [
                     'id' => $objComentario->getId(),
-                    'objEvaluacion' => [
-                        'NroDni' => $objComentario->objEvaluacion()->getId(),
-                        'Apellido' => $objComentario->objEvaluacion()->getASentimiento(),
-                        'Nombre' => $objComentario->objEvaluacion()->getAEntidades(),
-                        'fechaNac' => $objComentario->objEvaluacion()->getASyntaxis(),
-                        'Telefono' => $objComentario->objEvaluacion()->getClassText(),
-                        'Domicilio' => $objComentario->objEvaluacion()->getFechaCreacion(),
-                    ],
-                    'autor' => $objComentario->getAutor(),   
-                    'email_autor' => $objComentario->getEmailAutor(),
-                    'comentario' => $objComentario->getComentario(),
-                    'fecha_creacion' => $objComentario->getFechaCreacion(),                  
-                    'pais' => $objComentario->getPais()
+                    'sentimiento' => $objComentario->getDescripcion(),
+                    'entidades' => $objComentario->getPais(),
+                    'syntaxis' => $objComentario->getId(),
+                    'class_text' => $objComentario->getDescripcion(),
+                    'fecha_creacion' => $objComentario->getPais()                     
                 ];
 
                 array_push($listadoArray, $arrayComentario);
