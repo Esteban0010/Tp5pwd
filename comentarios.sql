@@ -17,9 +17,7 @@ CREATE TABLE `comentarios` (
     `email_autor` VARCHAR(255) NOT NULL,                      -- Email del autor
     `comentario` TEXT NOT NULL,                               -- El contenido del comentario
     `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- Fecha de creación del comentario
-    `estado` ENUM('pendiente', 'aprobado', 'rechazado') DEFAULT 'pendiente',  -- Estado de moderación
-    `ip_autor` VARCHAR(45) DEFAULT NULL,                      -- IP del autor del comentario
-    `url` VARCHAR(255) DEFAULT NULL,                          -- URL de la página donde se hizo el comentario
+    `pais` VARCHAR(16) NOT NULL,                              -- Pais del Comentario
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_evaluacion`) REFERENCES `evaluacion`(`id`) ON DELETE CASCADE  -- Relación con evaluacion
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
