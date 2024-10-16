@@ -3,9 +3,7 @@
 class Comentario{
 
     private $id;
-    private $objId_evaluacion; //obj evaluacion
     private $autor;
-    private $email_autor;
     private $comentario;
     private $fecha_creacion;
     private $pais; 
@@ -14,21 +12,18 @@ class Comentario{
     public function __construct()
     {
         $this->id = "";
-        $this->objId_evaluacion = new Evaluacion(); //obj evaluacion
         $this->autor = "";
-        $this->email_autor = "";
         $this->comentario = "";
         $this->fecha_creacion;
         $this->pais = "";
         $this->mensajeoperacion = "";
     }
 
-    public function setear($id, $objId_evaluacion, $autor, $email_autor, $comentario, $fecha_creacion, $pais)
+    public function setear($id,  $autor, $comentario, $fecha_creacion, $pais)
     {
         $this->setId($id);
-        $this->setObjIdEvaluacion($objId_evaluacion); // Objeto
         $this->setAutor($autor);
-        $this->setEmailAutor($email_autor);
+       
         $this->setComentario($comentario);
         $this->setFechaCreacion($fecha_creacion);
         $this->setPais($pais);        
@@ -40,20 +35,14 @@ class Comentario{
         return $this->id;
     }
 
-    public function getObjIdEvaluacion()
-    {
-        return $this->objId_evaluacion;
-    }
+    
 
     public function getAutor()
     {
         return $this->autor;
     }
 
-    public function getEmailAutor()
-    {
-        return $this->email_autor;
-    }
+   
 
     public function getComentario()
     {
@@ -81,20 +70,13 @@ class Comentario{
         $this->id = $valor;
     }
 
-    public function setObjIdEvaluacion($valor)
-    {
-        $this->objId_evaluacion = $valor;
-    }
+   
 
     public function setAutor($valor)
     {
         $this->autor = $valor;
     }
 
-    public function setEmailAutor($valor)
-    {
-        $this->email_autor = $valor;
-    }
 
     public function setComentario($valor)
     {
@@ -116,27 +98,18 @@ class Comentario{
         $this->mensajeoperacion = $valor;
     }
 
-    /* Metodos del Objeto*/
     public function cargar()
     {
         $respuesta = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM comentarios WHERE id = " . $this->getId() . "'";
+        $sql = "SELECT * FROM comentarios WHERE id = " . $this->getId();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
                 if ($res > 0) {
-                    $row = $base->Registro();
-
-                    // Se crea un objeto evaluacion 
-                    $idEvaluacion = new Evaluacion();
-                    $idEvaluacion->setId($row['id_evaluacion']); // Se asigna el id de evaluacion
-
-                    if ($idEvaluacion->cargar()) { // Carga los datos del id evaluacion    
-                        // Setea los datos del comentario junto con el objeto evaluacion                
-                        $this->setear($row['id'], $row['id_evaluacion'], $row['autor'], $row['email_autor'], $row['comentario'], $row['fecha_creacion'], $row['pais']);
+                    $row = $base->Registro();     
+                        $this->setear($row['id'], $row['autor'], $row['comentario'], $row['fecha_creacion'], $row['pais']);
                         $respuesta = true;
-                    }
                 }
             }
         } else {
@@ -149,16 +122,17 @@ class Comentario{
     {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO comentarios(id_evaluacion, autor, email_autor, comentario, fecha_creacion, pais)  VALUES(
-            '" . $this->getObjIdEvaluacion()->getId() . "',
+        if (!$this->getFechaCreacion()) {
+            $this->setFechaCreacion(date('Y-m-d H:i:s'));
+        }
+        $sql = "INSERT INTO comentarios(autor, comentario, fecha_creacion, pais) VALUES(
             '" . $this->getAutor() . "',
-            '" . $this->getEmailAutor() . "',
             '" . $this->getComentario() . "',
             '" . $this->getFechaCreacion() . "',
-            '" . $this->getPais() ."');";
+            '" . $this->getPais() . "');";
         if ($base->Iniciar()) {
-            if ($elid = $base->Ejecutar($sql)) {
-                $this->setId($elid);
+            if ($id = $base->Ejecutar($sql)) {
+                $this->setId($id);
                 $resp = true;
             } else {
                 $this->setmensajeoperacion("Comentarios->insertar: " . $base->getError());
@@ -173,10 +147,7 @@ class Comentario{
     {        
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE comentarios SET 
-            id_evaluacion='" . $this->getObjIdEvaluacion()->getId() . 
-            "', autor='" . $this->getAutor() . 
-            "', email_autor='" . $this->getEmailAutor() .
+        $sql = "UPDATE comentarios SET autor='" . $this->getAutor() . 
             "', comentario='" . $this->getComentario() .
             "', fecha_creacion='" . $this->getFechaCreacion() .
             "', pais='" . $this->getPais() .
@@ -226,23 +197,14 @@ class Comentario{
         if ($res > -1) {
             
             if ($res > 0) {
-                while ($row = $base->Registro()) {                 
+                while ($row = $base->Registro()) {       
 
-                    // objeto Evaluacion
-                    $idEvaluacion = new Evaluacion();
-                    $idEvaluacion->setId($row['id_evaluacion']); // Se asigna el ID de la evaluacion
-
-                    // Carga los datos del duenio desde la tabla Evaluacion
-                    if ($idEvaluacion->cargar()) {
-
-                        // Objeto Comentario
                         $obj = new Comentario();
 
-                        // Se setea los datos del Comentario junto con el ID Evaluacion
-                        $obj->setear($row['id'], $row['id_evaluacion'], $row['autor'], $row['email_autor'], $row['comentario'], $row['fecha_creacion'], $row['pais']);
+                        $obj->setear($row['id'], $row['autor'], $row['comentario'], $row['fecha_creacion'], $row['pais']);
                         
                         array_push($arreglo, $obj);
-                    }                    
+                                     
                 }                
             }  
 

@@ -19,7 +19,7 @@ class AbmNaturalLanguage {
     /**
      * Analiza un texto usando Google Cloud Natural Language y guarda los resultados en la DB.
      */
-    public function analizarTextoYGuardar($texto)
+    public function analizarTextoYGuardar($texto,$objComentario)
     {
         try {
             // Realiza el análisis del texto
@@ -28,17 +28,19 @@ class AbmNaturalLanguage {
 
             $entitiesResponse = $this->languageClient->analyzeEntities($texto);
             $entidades = $entitiesResponse->entities();
-
+           
             $syntaxResponse = $this->languageClient->analyzeSyntax($texto);
             $syntaxis = $syntaxResponse->tokens();
-
+            // print_r($syntaxis);
             // Convertir los resultados en formato adecuado para la base de datos
             $sentimientoScore = $sentimiento['score'];
-            $entidadesJson = json_encode($entidades); // Guardamos las entidades como un JSON
-            $syntaxisJson = json_encode($syntaxis);   // Guardamos la sintaxis como un JSON
+            $entidadesJson = $entidades[0]["name"]." ".$entidades[0]["name"]; 
+            $syntaxisJson = "sss";  
 
             // Crea un objeto de la clase Evaluacion para guardar los resultados
-            $evaluacion = new Evaluacion($sentimientoScore, $entidadesJson, $syntaxisJson);
+            $evaluacion = new Evaluacion();
+
+            $evaluacion->cargar($objComentario,$sentimientoScore, $entidadesJson, $syntaxisJson);
 
             // Inserta la evaluación en la base de datos
             if ($evaluacion->insertar()) {

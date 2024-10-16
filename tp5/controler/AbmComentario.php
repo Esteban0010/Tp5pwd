@@ -1,37 +1,28 @@
 <?php
 class AbmComentario {
-    /**
-     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
+      /**
+     * Carga un objeto Comentario con los parámetros provistos
      * @param array $param
-     * @return Comentario
+     * @return Comentario|null
      */
     private function cargarObjeto($param) {
         $obj = null;
-
-        if( array_key_exists('id',$param) && array_key_exists('id_evaluacion',$param) && array_key_exists('email_autor',$param) && array_key_exists('comentario',$param) && array_key_exists('fecha_creacion',$param) && array_key_exists('pais',$param)){
-
-            $objEvaluacion=new Evaluacion();
-            $objEvaluacion->setId($param['id_evaluacion']);
-            $objEvaluacion->cargar();
-
+        if (array_key_exists('autor', $param) && array_key_exists('comentario', $param) && array_key_exists('fecha_creacion', $param) && array_key_exists('pais', $param)) {
             $obj = new Comentario();
-            $obj->setear($param['id'],$objEvaluacion, $param['autor'], $param['email_autor'], $param['comentario'], $param['fecha_creacion'], $param['pais']);
-
+            // El ID no es necesario al crear un nuevo comentario, ya que es autoincremental
+            $obj->setear(null, $param['autor'], $param['comentario'], $param['fecha_creacion'], $param['pais']);
         }
-        return $obj;;
+        return $obj;
     }
 
-    /**
-     * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto que son claves
-     * @param array $param
-     * @return Comentario
-     */
+
+
     private function cargarObjetoConClave($param) {
         $obj = null;
-
         if (isset($param['id'])) {
             $obj = new Comentario();
-            $obj->setear($param['id'], null, null, null, null, null, null);
+            $obj->setId($param['id']);
+            $obj->cargar();  // Carga el resto de los datos desde la DB
         }
         return $obj;
     }
@@ -42,10 +33,7 @@ class AbmComentario {
      * @return BOOLEAN
      */
     private function seteadosCamposClaves($param) {
-        $resp = false;
-        if (isset($param['id']))
-            $resp = true;
-        return $resp;
+        return isset($param['id']);
     }
 
     /**
@@ -53,10 +41,10 @@ class AbmComentario {
      * @param array $param
      */
     public function alta($param) { //agrega
-        $resp = false;
+        $resp = -1;
         $objComentario = $this->cargarObjeto($param);
         if ($objComentario != null && $objComentario->insertar()) { // no hay que poner datos nulos pienso
-            $resp = true;
+            $resp = $objComentario;
         }
         return $resp;
     }
@@ -108,17 +96,10 @@ class AbmComentario {
                 $where .= " id = '" . $param['id'] . "'";
             }
 
-            if (isset($param['id_evaluacion'])) {
-                $where .= " id_evaluacion ='" . $param['id_evaluacion'] . "'";
-            }
-
             if (isset($param['autor'])) {
                 $where .= " autor ='" . $param['autor'] . "'";
             }
 
-            if (isset($param['email_autor'])) {
-                $where .= " email_autor = '" . $param['email_autor'] . "'";
-            }
 
             if (isset($param['comentario'])) {
                 $where .= " comentario ='" . $param['comentario'] . "'";
@@ -152,16 +133,7 @@ class AbmComentario {
             foreach ($arregloObjComentario as $objComentario) {
                 $arrayComentario = [
                     'id' => $objComentario->getId(),
-                    'objEvaluacion' => [
-                        'NroDni' => $objComentario->objEvaluacion()->getId(),
-                        'Apellido' => $objComentario->objEvaluacion()->getASentimiento(),
-                        'Nombre' => $objComentario->objEvaluacion()->getAEntidades(),
-                        'fechaNac' => $objComentario->objEvaluacion()->getASyntaxis(),
-                        'Telefono' => $objComentario->objEvaluacion()->getClassText(),
-                        'Domicilio' => $objComentario->objEvaluacion()->getFechaCreacion(),
-                    ],
                     'autor' => $objComentario->getAutor(),   
-                    'email_autor' => $objComentario->getEmailAutor(),
                     'comentario' => $objComentario->getComentario(),
                     'fecha_creacion' => $objComentario->getFechaCreacion(),                  
                     'pais' => $objComentario->getPais()

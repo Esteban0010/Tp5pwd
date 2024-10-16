@@ -1,33 +1,41 @@
 <?php
 class Evaluacion
 {
-
     private $id;
+    private $objComentario;
     private $aSentimiento;
     private $aEntidades;
     private $aSyntaxis;
-    private $classText;
     private $fecha_creacion;
     private $mensajeoperacion;
 
-    public function __construct($aSentimiento, $aEntidades, $aSyntaxis)
+    public function __construct($objComentario = null, $aSentimiento = null, $aEntidades = null, $aSyntaxis = null, $fecha_creacion = null)
     {
+        $this->objComentario = $objComentario;
         $this->aSentimiento = $aSentimiento;
         $this->aEntidades = $aEntidades;
-        $this->aSyntaxis =$aSyntaxis;
+        $this->aSyntaxis = $aSyntaxis;
+        $this->fecha_creacion = $fecha_creacion;
     }
 
-    public function setear( $aSentimiento, $aEntidades, $aSyntaxis)
+    public function setear($objComentario, $aSentimiento, $aEntidades, $aSyntaxis, $fecha_creacion)
     {
+        $this->setObjComentario($objComentario);
         $this->setASentimiento($aSentimiento);
         $this->setAEntidades($aEntidades);
         $this->setASyntaxis($aSyntaxis);
+        $this->setFechaCreacion($fecha_creacion);
     }
 
-    /*get*/
+    /* Getters */
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getObjComentario()
+    {
+        return $this->objComentario;
     }
 
     public function getASentimiento()
@@ -45,11 +53,6 @@ class Evaluacion
         return $this->aSyntaxis;
     }
 
-    public function getClassText()
-    {
-        return $this->classText;
-    }
-
     public function getFechaCreacion()
     {
         return $this->fecha_creacion;
@@ -60,10 +63,15 @@ class Evaluacion
         return $this->mensajeoperacion;
     }
 
-    /*set*/
+    /* Setters */
     public function setId($value)
     {
         $this->id = $value;
+    }
+
+    public function setObjComentario($value)
+    {
+        $this->objComentario = $value;
     }
 
     public function setASentimiento($value)
@@ -81,11 +89,6 @@ class Evaluacion
         $this->aSyntaxis = $value;
     }
 
-    public function setClassText($value)
-    {
-        $this->classText = $value;
-    }
-
     public function setFechaCreacion($value)
     {
         $this->fecha_creacion = $value;
@@ -96,25 +99,18 @@ class Evaluacion
         $this->mensajeoperacion = $valor;
     }
 
-
+    /* Métodos de operación con la base de datos */
     public function cargar()
     {
         $resp = false;
-        $base = new BaseDatos(); // Asegúrate de que la clase BaseDatos esté correctamente configurada.
-
-        // Ajusta la consulta SQL para la tabla "evaluacion" y busca por el campo adecuado, que en este caso sería el ID de la evaluación.
-        $sql = "SELECT * FROM evaluacion WHERE id = " . $this->getId() . "'";
+        $base = new BaseDatos();
+        $sql = "SELECT * FROM evaluacion WHERE id = " . $this->getId();
 
         if ($base->Iniciar()) {
-            $res = $base->Ejecutar($sql); // Ejecuta la consulta
-
-            if ($res > -1) { // Si la consulta se ejecuta sin errores
-                if ($res > 0) { // Si se encontraron registros
-                    $row = $base->Registro(); // Obtén el registro actual                    
-                    // Ajusta los campos según las columnas de tu tabla "evaluacion"        
-                    $this->setear($row['id'], $row['sentimiento'], $row['entidades'], $row['syntaxis'], $row['class_text'], $row['fecha_creacion']);
-                    $resp = true; // Carga exitosa
-                }
+            $res = $base->Ejecutar($sql);
+            if ($res > -1 && $row = $base->Registro()) {
+                $this->setear($row['id_comentario'], $row['sentimiento'], $row['entidades'], $row['syntaxis'], $row['fecha_creacion']);
+                $resp = true;
             }
         } else {
             $this->setmensajeoperacion("Evaluacion->cargar: " . $base->getError());
@@ -128,10 +124,12 @@ class Evaluacion
         $resp = false;
         $base = new BaseDatos();
 
-        $sql = "INSERT INTO evaluacion (sentimiento, entidades, syntaxis,) VALUES (
+        $sql = "INSERT INTO evaluacion (id_comentario, sentimiento, entidades, syntaxis, fecha_creacion) VALUES (
+            '" . $this->getObjComentario()->getId() . "',
             '" . $this->getASentimiento() . "',
             '" . $this->getAEntidades() . "',
-            '" . $this->getASyntaxis() ."');";
+            '" . $this->getASyntaxis() . "',
+            '" . $this->getFechaCreacion() . "');";
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
@@ -146,20 +144,18 @@ class Evaluacion
         return $resp;
     }
 
-
     public function modificar()
     {
         $resp = false;
-        $base = new BaseDatos(); // Asegúrate de que la clase BaseDatos esté correctamente configurada.
+        $base = new BaseDatos();
 
-        // Crear la sentencia SQL de actualización
         $sql = "UPDATE evaluacion SET 
-                sentimiento='" . $this->getASentimiento() .
-            "', entidades='" . $this->getAEntidades() .
-            "', syntaxis='" . $this->getASyntaxis() .
-            "', class_text='" . $this->getClassText() .
-            "', fecha_creacion='" . $this->getClassText() .
-            "' WHERE id= '" . $this->getId() . "'";
+                id_comentario='" . $this->getObjComentario()->getId() . "',
+                sentimiento='" . $this->getASentimiento() . "',
+                entidades='" . $this->getAEntidades() . "',
+                syntaxis='" . $this->getASyntaxis() . "',
+                fecha_creacion='" . $this->getFechaCreacion() . "'
+                WHERE id=" . $this->getId();
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
@@ -170,9 +166,9 @@ class Evaluacion
         } else {
             $this->setmensajeoperacion("Evaluacion->modificar: " . $base->getError());
         }
+
         return $resp;
     }
-
 
     public function eliminar()
     {
@@ -183,49 +179,43 @@ class Evaluacion
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
-                // Si la eliminación fue exitosa
                 $resp = true;
             } else {
-                // Si ocurre un error al ejecutar la consulta
                 $this->setmensajeoperacion("Evaluacion->eliminar: " . $base->getError());
             }
         } else {
-            // Si ocurre un error al iniciar la conexión a la base de datos
             $this->setmensajeoperacion("Evaluacion->eliminar: " . $base->getError());
         }
 
-        return $resp; // Retorna true si la eliminación fue exitosa, de lo contrario false
+        return $resp;
     }
 
     public static function listar($parametro = "")
     {
         $arreglo = array();
-        $base = new BaseDatos(); // Asegúrate de que la clase BaseDatos esté correctamente configurada.
+        $base = new BaseDatos();
 
-        // Sentencia SQL para seleccionar todas las filas de la tabla "evaluacion"
         $sql = "SELECT * FROM evaluacion";
 
-        // Si hay un parámetro, se agrega a la consulta como condición WHERE
         if ($parametro != "") {
             $sql .= ' WHERE ' . $parametro;
         }
 
-        $res = $base->Ejecutar($sql); // Ejecuta la consulta
-
-        if ($res > -1) {
-            if ($res > 0) {
-                // Itera sobre cada registro y crea un objeto Evaluacion con los datos obtenidos
+        if ($base->Iniciar()) {
+            $res = $base->Ejecutar($sql);
+            if ($res > -1) {
                 while ($row = $base->Registro()) {
-                    $obj = new Evaluacion();
-                    $obj->setear($row['id'], $row['sentimiento'], $row['entidades'], $row['syntaxis'], $row['class_text'], $row['fecha_creacion']);
+                    $objComentario = new Comentario(); // Asumiendo que tienes una clase Comentario
+                    $objComentario->setId($row['id_comentario']); // Asegúrate de que la clase Comentario esté bien definida
+                    $objComentario->cargar();
+                    $obj = new Evaluacion($objComentario, $row['sentimiento'], $row['entidades'], $row['syntaxis'], $row['fecha_creacion']);
                     array_push($arreglo, $obj);
                 }
             }
         } else {
-            // Lanza una excepción en caso de error
             throw new Exception("Evaluacion->listar: " . $base->getError());
         }
 
-        return $arreglo; // Retorna un arreglo con los objetos Evaluacion
+        return $arreglo;
     }
 }
