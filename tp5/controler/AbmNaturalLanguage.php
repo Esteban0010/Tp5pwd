@@ -19,9 +19,9 @@ class AbmNaturalLanguage {
     /**
      * Analiza un texto usando Google Cloud Natural Language y guarda los resultados en la DB.
      */
-    public function analizarTextoYGuardar($texto,$objComentario)
+    public function analizarTextoYGuardar($texto)
     {
-        try {
+       
             // Realiza el análisis del texto
             $response = $this->languageClient->analyzeSentiment($texto);
             $sentimiento = $response->sentiment();
@@ -36,24 +36,12 @@ class AbmNaturalLanguage {
             $sentimientoScore = $sentimiento['score'];
             $entidadesJson = $entidades[0]["name"]." ".$entidades[0]["name"]; 
             $syntaxisJson = "sss";  
-
-            // Crea un objeto de la clase Evaluacion para guardar los resultados
-            $evaluacion = new Evaluacion();
-
-            $evaluacion->cargar($objComentario,$sentimientoScore, $entidadesJson, $syntaxisJson);
-
-            // Inserta la evaluación en la base de datos
-            if ($evaluacion->insertar()) {
-                return true;
-            } else {
-                throw new Exception("Error al guardar la evaluación en la base de datos.");
-            }
-
-        } catch (Exception $e) {
-            // Manejo de errores
-            echo "Error al procesar el texto: " . $e->getMessage();
-            return false;
-        }
+            return [
+                'sentimiento' => $sentimiento['score'],
+                'entidades' =>  $entidades[0]["name"]." ".$entidades[0]["name"],
+                'syntaxis' => "Imperialismo"
+            ];
+        
     }
 
     /**

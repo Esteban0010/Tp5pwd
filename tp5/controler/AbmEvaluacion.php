@@ -8,16 +8,21 @@ class AbmEvaluacion {
     private function cargarObjeto($param) {
         $obj = null;
 
-        if( array_key_exists('id',$param) && array_key_exists('sentimiento',$param) && array_key_exists('entidades',$param) && array_key_exists('syntaxis',$param)  && array_key_exists('class_text',$param) && array_key_exists('fecha_creacion',$param)){
+        if( array_key_exists('sentimiento', $param) && array_key_exists('entidades', $param) && array_key_exists('syntaxis', $param)) {
 
-            $obj = new Evaluacion();            
+            $objComentario = $param['objComentario'] ?? null;
+            $obj = new Evaluacion();
+$obj->setear($objComentario, $param['sentimiento'], $param['entidades'], $param['syntaxis']);
+            if (isset($param['id'])) {
+                $obj->setId($param['id']);
+            }
 
-            $obj->setear($param['id'], $param['sentimiento'], $param['entidades'], $param['syntaxis'],
-            $param['class_text'],
-            $param['fecha_creacion'],);
-
+            if (isset($param['fecha_creacion'])) {
+                $obj->setFechaCreacion($param['fecha_creacion']);
+            }
         }
-        return $obj;;
+
+        return $obj;
     }
 
     /**

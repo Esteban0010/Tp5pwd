@@ -17,10 +17,10 @@ if (isset($datos) && isset($datos['msj']) && isset($datos['autor']) && isset($da
         'fecha_creacion' => date('Y-m-d H:i:s'), // Fecha actual
         'pais' => $pais
     ];
-
+$objComentario="";
     // Alta de comentario y obtener el ID del comentario creado
-    if ($comentarioAbm->alta($paramComentario)) {
-        $idComm = $comentarioAbm->buscar(['autor' => $autor])[0]->getId(); // Obtener el ID del comentario creado
+    if ($objComentario = $comentarioAbm->alta($paramComentario)) {
+        
 
         // Analizar el texto usando Google Natural Language
         $analyzer = new AbmNaturalLanguage();
@@ -29,15 +29,14 @@ if (isset($datos) && isset($datos['msj']) && isset($datos['autor']) && isset($da
         // Crear una evaluación con el ID del comentario y los resultados del análisis
         $evaluacionAbm = new AbmEvaluacion();
         $paramEvaluacion = [
-            'objComentario' => $idComm,
-            'aSentimiento' => $sentimiento['sentimiento'],
-            'aEntidades' => $sentimiento['entidades'],
-            'aSyntaxis' => $sentimiento['syntaxis'],
-            'fecha_creacion' => date('Y-m-d H:i:s') // Fecha actual
+            'objComentario' => $objComentario,
+            'sentimiento' => $sentimiento['sentimiento'],
+            'entidades' => $sentimiento['entidades'],
+            'syntaxis' => $sentimiento['syntaxis'],
         ];
 
         if ($evaluacionAbm->alta($paramEvaluacion)) {
-            echo "Evaluación creada correctamente con el comentario ID: $idComm";
+            echo "Evaluación creada correctamente con el comentario ";
         } else {
             echo "Error al crear la evaluación.";
         }

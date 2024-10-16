@@ -6,25 +6,24 @@ class Evaluacion
     private $aSentimiento;
     private $aEntidades;
     private $aSyntaxis;
-    private $fecha_creacion;
+   
     private $mensajeoperacion;
 
-    public function __construct($objComentario = null, $aSentimiento = null, $aEntidades = null, $aSyntaxis = null, $fecha_creacion = null)
+    public function __construct($objComentario = null, $aSentimiento = null, $aEntidades = null, $aSyntaxis = null)
     {
         $this->objComentario = $objComentario;
         $this->aSentimiento = $aSentimiento;
         $this->aEntidades = $aEntidades;
         $this->aSyntaxis = $aSyntaxis;
-        $this->fecha_creacion = $fecha_creacion;
     }
 
-    public function setear($objComentario, $aSentimiento, $aEntidades, $aSyntaxis, $fecha_creacion)
+    public function setear($objComentario, $aSentimiento, $aEntidades, $aSyntaxis, )
     {
         $this->setObjComentario($objComentario);
         $this->setASentimiento($aSentimiento);
         $this->setAEntidades($aEntidades);
         $this->setASyntaxis($aSyntaxis);
-        $this->setFechaCreacion($fecha_creacion);
+      
     }
 
     /* Getters */
@@ -53,10 +52,7 @@ class Evaluacion
         return $this->aSyntaxis;
     }
 
-    public function getFechaCreacion()
-    {
-        return $this->fecha_creacion;
-    }
+
 
     public function getmensajeoperacion()
     {
@@ -89,10 +85,7 @@ class Evaluacion
         $this->aSyntaxis = $value;
     }
 
-    public function setFechaCreacion($value)
-    {
-        $this->fecha_creacion = $value;
-    }
+
 
     public function setmensajeoperacion($valor)
     {
@@ -109,7 +102,7 @@ class Evaluacion
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if ($res > -1 && $row = $base->Registro()) {
-                $this->setear($row['id_comentario'], $row['sentimiento'], $row['entidades'], $row['syntaxis'], $row['fecha_creacion']);
+                $this->setear($row['id_comentario'], $row['sentimiento'], $row['entidades'], $row['syntaxis'], );
                 $resp = true;
             }
         } else {
@@ -124,12 +117,11 @@ class Evaluacion
         $resp = false;
         $base = new BaseDatos();
 
-        $sql = "INSERT INTO evaluacion (id_comentario, sentimiento, entidades, syntaxis, fecha_creacion) VALUES (
+        $sql = "INSERT INTO evaluacion (id_comentario, sentimiento, entidades, syntaxis) VALUES (
             '" . $this->getObjComentario()->getId() . "',
             '" . $this->getASentimiento() . "',
             '" . $this->getAEntidades() . "',
-            '" . $this->getASyntaxis() . "',
-            '" . $this->getFechaCreacion() . "');";
+            '" . $this->getASyntaxis() . "');";
 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
@@ -153,8 +145,7 @@ class Evaluacion
                 id_comentario='" . $this->getObjComentario()->getId() . "',
                 sentimiento='" . $this->getASentimiento() . "',
                 entidades='" . $this->getAEntidades() . "',
-                syntaxis='" . $this->getASyntaxis() . "',
-                fecha_creacion='" . $this->getFechaCreacion() . "'
+                syntaxis='" . $this->getASyntaxis() .  "'
                 WHERE id=" . $this->getId();
 
         if ($base->Iniciar()) {
@@ -208,7 +199,7 @@ class Evaluacion
                     $objComentario = new Comentario(); // Asumiendo que tienes una clase Comentario
                     $objComentario->setId($row['id_comentario']); // Asegúrate de que la clase Comentario esté bien definida
                     $objComentario->cargar();
-                    $obj = new Evaluacion($objComentario, $row['sentimiento'], $row['entidades'], $row['syntaxis'], $row['fecha_creacion']);
+                    $obj = new Evaluacion($objComentario, $row['sentimiento'], $row['entidades'], $row['syntaxis']);
                     array_push($arreglo, $obj);
                 }
             }
