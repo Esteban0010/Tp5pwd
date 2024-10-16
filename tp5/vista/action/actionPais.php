@@ -3,16 +3,17 @@ include_once '../../configuracion.php';
 
 $datos = data_submitted();
 
+// Validar si se envió el país antes de intentar usar la función country.
+if (isset($datos['pais'])) {
+    $pais = country($datos['pais']);
+    $nombrePais = $pais->getName();
+} else {
+    $nombrePais = '';
+}
 
-$pais = country($datos['pais']);
-// echo $pais;
-print_r($pais->getName());
-// Get all countries                            
+// Obtener todos los países
 $paises = countries(); 
-// echo "<br><br><div>". count($paises) . " paises hay en la libreria con códigos de países según la norma ISO 3166</div><br>";
-
 ?>
-
 
 <html>
 
@@ -25,14 +26,26 @@ $paises = countries();
 <body>
     <div>
         <form action="./actionEvaluacion.php" method="post">
-            <label for="msj"></label>
-            <input type="text" name="msj">
-<button type="submit">enviar</button>
+            <label for="autor">Autor:</label>
+            <input type="text" name="autor" id="autor" required>
+            
+            <label for="msj">Mensaje:</label>
+            <input type="text" name="msj" id="msj" required>
+
+            <!-- Campo oculto para el país -->
+            <input type="hidden" name="pais" value="<?php echo htmlspecialchars($nombrePais); ?>">
+
+            <button type="submit">Enviar</button>
         </form>
-        <?php
-        
-         ?>
+
+        <?php if ($nombrePais): ?>
+            <p>El país seleccionado es: <?php echo $nombrePais; ?></p>
+        <?php else: ?>
+            <p>No se ha seleccionado ningún país.</p>
+        <?php endif; ?>
     </div>
 </body>
+
+</html>
 
 </html>
