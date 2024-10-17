@@ -77,11 +77,9 @@ $paises = countries();
                                             //echo "<textarea name='descripcion' id='descripcion' class='form-control comment-box' placeholder='Escribe tu comentario aquí...'></textarea>";
                                         //echo "</div>";
 
+                                        // Campo oculto para el país    
                                         echo "<input type='hidden' id='pais' name='pais' value='" . $nombrePais . "'>";
-
-                                            // Campo oculto para el país
-                                        echo "<input type='hidden' name='pais' value=" . $nombrePais . ">";
-                                        
+                                                                            
                                         echo "<input type='submit' class='btn btn-primary w-100' value='Enviar'></input>";
 
                                         echo "<a href='../index.php' class='btn btn-secondary mt-2'>Volver Formulario</a>"; 

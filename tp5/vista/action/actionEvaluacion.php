@@ -2,6 +2,7 @@
 include_once '../../configuracion.php';
 
 $datos = data_submitted();
+$resp = null;
 
 if (isset($datos) && isset($datos['msj']) && isset($datos['autor']) && isset($datos['pais'])) {
     // Obtener los valores del formulario
@@ -36,10 +37,8 @@ $objComentario="";
         ];
 
         if ($evaluacionAbm->alta($paramEvaluacion)) {
-            echo "Evaluación creada correctamente con el comentario ";
-        } else {
-            echo "Error al crear la evaluación.";
-        }
+            $resp = true;
+        } 
     } else {
         echo "Error al crear el comentario.";
     }
@@ -47,14 +46,31 @@ $objComentario="";
     echo "No se recibieron todos los datos necesarios.";
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Comentario Guardado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body>
-    <div>Evaluación completada</div>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <?php
+        if ($resp) {
+            echo "<div class='alert alert-success' role='alert'>";
+            echo "<h4 class='alert-heading'>Comentario Guardado con Evaluacion Exitosamente!</h4>";
+            echo "</div>";
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>";
+            echo "<h4 class='alert-heading'>Error al crear la evaluación.</h4>";
+            echo "</div>";
+        }
+        echo "<a href='actionPais.php?pais=" . $pais . "&accion=accion' class='btn btn-secondary'>Volver</a>";
+        ?>
+    </div>
 </body>
 </html>
