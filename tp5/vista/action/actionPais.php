@@ -67,7 +67,14 @@ foreach ($arrayComentarios as &$comentario) {
                             echo "<p><strong>Nombre: </strong>" . $pais->getName() . "</p>";
                             echo "<p><strong>Capital: </strong>" . $pais->getCapital() . "</p>";
                             //echo "<p><strong>Moneda: </strong>" . $moneda . "</p>";
-                            //echo "<p><strong>Idioma(s): </strong>" . $idioma . "</p>";
+
+                            // idioma del país 
+                            echo "<p><strong>Idioma(s):</strong>";                             
+                            foreach($pais->getLanguages() as $idioma){
+                                echo " " . $idioma . " ";
+                            }
+                            echo "</p>";
+
                             //echo "<p><strong>Paises limitrofes(s): </strong>" . $limitrofes . "</p>";
                             echo "<p><strong>Emoji: </strong>" . $pais->getEmoji() . "</p>";
                             echo "<div><strong>Bandera(s): </strong><div>" . $pais->getFlag() . "</div></div>";
@@ -95,14 +102,12 @@ foreach ($arrayComentarios as &$comentario) {
                                         echo "<div class='form-group mb-3'>";
                                         echo "<label for='msj' class='form-label'>Mensaje:</label>";
                                         echo "<input type='text' class='form-control' name='msj' id='msj' required>";
-                                        echo "</div>";
+                                        echo "</div>";                                        
 
-                                        //echo "<div class='form-group mb-3'>";
-                                            //echo "<textarea name='descripcion' id='descripcion' class='form-control comment-box' placeholder='Escribe tu comentario aquí...'></textarea>";
-                                        //echo "</div>";
-
-                                        // Campo oculto para el país    
+                                        // Campo oculto para el país     
                                         echo "<input type='hidden' id='pais' name='pais' value='" . $nombrePais . "'>";
+                                        // Campo oculto para el coidgo ISO del país  
+                                        echo "<input type='hidden' id='codigo' name='codigo' value='" . $datos['pais'] . "'>";
                                                                             
                                         echo "<input type='submit' class='btn btn-primary w-100' value='Enviar'></input>";
 
