@@ -1,11 +1,11 @@
 <?php
 
-// namespace ABM\model;
+// namespace ABM\control;
 
+// use ABM\model\CountryModel;
 use Rinvex\Country\CountryLoader; // Asegúrate de importar la clase correctamente
 
-
-class CountryModel
+class AbmPais
 {
     // Método para obtener el país por su código
     public function getCountryByCode($code)
@@ -276,6 +276,13 @@ class CountryModel
             return $this->getCountryByCode($countryCode);
         }
 
-        return null; // Retorna null si no se encuentra el país
+        return null; // Retorna null si no se encue
+
+
+
+
+
+
+
     }
 }
