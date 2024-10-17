@@ -20,7 +20,7 @@ $arrayEvaluaciones = $objEvaluaciones->darArray();
 
 
 // Unir cada comentario con su evaluación correspondiente
-foreach ($arrayComentarios as &$comentario) {
+foreach ($arrayComentarios as $key => $comentario) {
     // Buscar la evaluación que corresponde a este comentario
     foreach ($arrayEvaluaciones as $evaluacion) {
         if ($evaluacion['id_comentario'] == $comentario['id']) {
@@ -30,6 +30,7 @@ foreach ($arrayComentarios as &$comentario) {
         }
     }
 }
+print_r($arrayComentarios)
 ?>
 
 <?php
