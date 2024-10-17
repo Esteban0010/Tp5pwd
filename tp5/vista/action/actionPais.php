@@ -1,6 +1,9 @@
 <?php
 include_once '../../configuracion.php';
 
+include_once "Estructura/Header.php";
+
+
 // Listar comentarios
 
 
@@ -165,5 +168,8 @@ foreach ($arrayComentarios as &$comentario) {
 </div>
 
 </body>
+<?php
+    include_once "Estructura/Footer.php";
+    ?>
 
 </html>
