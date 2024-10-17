@@ -2,8 +2,7 @@
 include_once '../../configuracion.php';
 
 // Listar comentarios
-$objComentario = new AbmComentario();
-$arrayComentarios = $objComentario->darArray(); // Obtener el array de comentarios
+
 
 $datos = data_submitted();
 
@@ -15,8 +14,25 @@ if (isset($datos['pais'])) {
     $nombrePais = '';
 }
 
-// Obtener todos los países
-$paises = countries(); 
+
+
+$objComentario = new AbmComentario();
+$arrayComentarios = $objComentario->darArray(['pais'=>$nombrePais]); // Obtener el array de comentarios
+$objEvaluaciones = new AbmEvaluacion();
+$arrayEvaluaciones = $objEvaluaciones->darArray();
+
+
+// Unir cada comentario con su evaluación correspondiente
+foreach ($arrayComentarios as &$comentario) {
+    // Buscar la evaluación que corresponde a este comentario
+    foreach ($arrayEvaluaciones as $evaluacion) {
+        if ($evaluacion['id_comentario'] == $comentario['id']) {
+            // Agregar el score de la evaluación al array de comentarios
+            $comentario['score'] = $evaluacion['sentimiento'];
+            break;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,74 +40,9 @@ $paises = countries();
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Comentarios</title>
-    <style>
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            background-color: #f9f9f9;
-            width: 300px;
-        }
-        .card h3 {
-            margin: 0;
-            font-size: 1.2em;
-        }
-        .card p {
-            margin: 5px 0;
-        }
-        .card .fecha {
-            font-size: 0.9em;
-            color: #666;
-        }
-    </style>
-</head>
-<body>
-
-<div>
-    <form action="./actionEvaluacion.php" method="post">
-        <label for="autor">Autor:</label>
-        <input type="text" name="autor" id="autor" required>
-        
-        <label for="msj">Mensaje:</label>
-        <input type="text" name="msj" id="msj" required>
-
-        <!-- Campo oculto para el país -->
-        <input type="hidden" name="pais" value="<?php echo htmlspecialchars($nombrePais); ?>">
-
-        <button type="submit">Enviar</button>
-    </form>
-
-    <?php if ($nombrePais): ?>
-        <p>El país seleccionado es: <?php echo $nombrePais; ?></p>
-    <?php else: ?>
-        <p>No se ha seleccionado ningún país.</p>
-    <?php endif; ?>
-</div>
-
-<!-- Listado de comentarios en tarjetas (cards) -->
-<h2>Comentarios</h2>
-<div class="comentarios">
-    <?php if (count($arrayComentarios) > 0): ?>
-        <?php foreach ($arrayComentarios as $comentario): ?>
-            <div class="card">
-                <h3>Autor: <?php echo htmlspecialchars($comentario['autor']); ?></h3>
-                <p>Comentario: <?php echo htmlspecialchars($comentario['comentario']); ?></p>
-                <p class="fecha">Fecha: <?php echo htmlspecialchars($comentario['fecha_creacion']); ?></p>
-                <p>País: <?php echo htmlspecialchars($comentario['pais']); ?></p>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No hay comentarios disponibles.</p>
-    <?php endif; ?>
-</div>
-
-</body>
-=======
     <title>Pais</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    
 </head>
 
 <body class="bg-light">
@@ -171,8 +122,48 @@ $paises = countries();
             </div>
         </div>    
     </div>
+    <h2 class="my-4">Comentarios</h2>
+<div class="comentarios">
+    <?php if (count($arrayComentarios) > 0): ?>
+        <?php foreach ($arrayComentarios as $comentario): ?>
+            <?php
+                // Obtener el score del comentario
+                $score = $comentario['score'];
+
+                // Asignar una clase de color en función del score
+                if ($score < 0.0) {
+                    $bgColor = 'bg-danger'; // Rojo para score menor a 0.0
+                } elseif ($score <= 0.3) {
+                    $bgColor = 'bg-warning'; // Naranja para score entre 0.0 y 0.3
+                } elseif ($score <= 0.6) {
+                    $bgColor = 'bg-warning'; // Amarillo para score entre 0.3 y 0.6
+                } elseif ($score <= 0.8) {
+                    $bgColor = 'bg-success'; // Verde para score entre 0.6 y 0.8
+                } else {
+                    $bgColor = 'bg-primary'; // Azul para score mayor a 0.8
+                }
+            ?>
+            <div class="col-12 mb-3">
+                <div class="card <?php echo $bgColor; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title">Autor: <?php echo htmlspecialchars($comentario['autor']); ?></h5>
+                        <p class="card-text">Comentario: <?php echo htmlspecialchars($comentario['comentario']); ?></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Fecha: <?php echo htmlspecialchars($comentario['fecha_creacion']); ?></small><br>
+                        <small class="text-muted">País: <?php echo htmlspecialchars($comentario['pais']); ?></small><br>
+                        <small class="text-muted">Score: <?php echo htmlspecialchars($score); ?></small>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <div class="col-12">
+            <p>No hay comentarios disponibles.</p>
+        </div>
+    <?php endif; ?>
+</div>
 
 </body>
 
->>>>>>> 81e7eb3df15aad1d0301c0f0c64245556d026c3a
 </html>

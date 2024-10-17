@@ -143,22 +143,20 @@ $obj->setear($objComentario, $param['sentimiento'], $param['entidades'], $param[
      * @param array $param
      * @return ARRAY
      */
-    public function darArray($param) {
+    public function darArray($param="") {
         
-        $arregloObjComentario = $this->buscar($param);
+        $evaluaciones = $this->buscar($param);
         $listadoArray = [];
 
-        if (count($arregloObjComentario) > 0) {
+        if (count($evaluaciones) > 0) {
 
 
-            foreach ($arregloObjComentario as $objComentario) {
+            foreach ($evaluaciones as $objEva) {
                 $arrayComentario = [
-                    'id' => $objComentario->getId(),
-                    'sentimiento' => $objComentario->getDescripcion(),
-                    'entidades' => $objComentario->getPais(),
-                    'syntaxis' => $objComentario->getId(),
-                    'class_text' => $objComentario->getDescripcion(),
-                    'fecha_creacion' => $objComentario->getPais()                     
+                    'id_comentario' => $objEva->getObjComentario()->getId(),
+                    'sentimiento' => $objEva->getASentimiento(),
+                    'entidades' => $objEva->getAEntidades(),
+                    'syntaxis' => $objEva->getASyntaxis(),                
                 ];
 
                 array_push($listadoArray, $arrayComentario);
