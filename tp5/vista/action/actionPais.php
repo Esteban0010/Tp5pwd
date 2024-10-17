@@ -26,7 +26,7 @@ $arrayEvaluaciones = $objEvaluaciones->darArray();
 
 
 // Unir cada comentario con su evaluación correspondiente
-foreach ($arrayComentarios as $comentario) {
+foreach ($arrayComentarios as &$comentario) {
     // Buscar la evaluación que corresponde a este comentario
     foreach ($arrayEvaluaciones as $evaluacion) {
         if ($evaluacion['id_comentario'] == $comentario['id']) {
@@ -112,7 +112,7 @@ foreach ($arrayComentarios as $comentario) {
 
                     echo "<input type='submit' class='btn btn-primary w-100' value='Enviar'></input>";
 
-                    echo "<a href='../index.php' class='btn btn-secondary mt-2'>Volver Formulario</a>";
+                    echo "<a href='../indexPrincipal.php' class='btn btn-secondary mt-2'>Volver Formulario</a>";
 
                     echo "</form>";
 

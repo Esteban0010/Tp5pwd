@@ -1,6 +1,10 @@
 <?php
 include_once '../../configuracion.php';
 
+include_once "../estructura/Header.php";
+
+
+
 $datos = data_submitted();
 $resp = null;
 
@@ -69,8 +73,12 @@ $objComentario="";
             echo "<h4 class='alert-heading'>Error al crear la evaluación.</h4>";
             echo "</div>";
         }
-        echo "<a href='actionPais.php?pais=" . $datos['codigo'] . "&accion=accion' class='btn btn-secondary'>Volver</a>";
+        echo "<a href='actionPais.php?pais=" . $pais . "&accion=accion' class='btn btn-secondary'>Volver</a>";
         ?>
     </div>
+    <?php
+include_once "../estructura/Footer.php";
+?>
+
 </body>
 </html>

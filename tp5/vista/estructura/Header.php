@@ -12,7 +12,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
+    <title>Index</title>
 
     <style>
  
@@ -57,7 +57,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-info">
-            <a class="titulo" href="../../../Menu.php">
+            <a class="titulo" href="../indexPrincipal.php">
                 <h2>Programación Web Dinámica 2024 - Grupo 21</h2>
             </a>
         </nav>
