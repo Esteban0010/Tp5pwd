@@ -12,17 +12,20 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Header</title>
 
     <style>
+ 
         html, body {
             height: 100%;
             margin: 0;
+            width: 100%;
         }
 
         body {
             display: flex;
             flex-direction: column;
+            
         }
 
         .titulo {
@@ -41,6 +44,8 @@
             padding: 10px;
             text-align: center;
             width: 100%;
+            
+            
         }
 
         nav.navbar {
@@ -57,5 +62,3 @@
             </a>
         </nav>
     </header>
-</body>
-</html>

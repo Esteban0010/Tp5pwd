@@ -1,7 +1,7 @@
 <?php
 include_once '../../configuracion.php';
 
-include_once "Estructura/Header.php";
+include_once "../estructura/Header.php";
 
 
 // Listar comentarios
@@ -26,7 +26,7 @@ $arrayEvaluaciones = $objEvaluaciones->darArray();
 
 
 // Unir cada comentario con su evaluación correspondiente
-foreach ($arrayComentarios as &$comentario) {
+foreach ($arrayComentarios as $comentario) {
     // Buscar la evaluación que corresponde a este comentario
     foreach ($arrayEvaluaciones as $evaluacion) {
         if ($evaluacion['id_comentario'] == $comentario['id']) {
@@ -172,9 +172,7 @@ foreach ($arrayComentarios as &$comentario) {
         <?php endif; ?>
     </div>
 
-</body>
-<?php
-include_once "Estructura/Footer.php";
-?>
 
-</html>
+<?php
+include_once "../estructura/Footer.php";
+?>
