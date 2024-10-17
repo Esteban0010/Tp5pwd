@@ -1,11 +1,9 @@
 <?php
 include_once '../../configuracion.php';
 
-include_once "../estructura/Header.php";
-
-
 
 $datos = data_submitted();
+
 $resp = null;
 
 if (isset($datos) && isset($datos['msj']) && isset($datos['autor']) && isset($datos['pais'])) {
@@ -51,17 +49,10 @@ $objComentario="";
 }
 ?>
 
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comentario Guardado</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-light">
+<?php
+include_once "../estructura/Header.php";
+?>
+<!-- <body class="bg-light"> -->
     <div class="container mt-5">
         <?php
         if ($resp) {
@@ -73,12 +64,10 @@ $objComentario="";
             echo "<h4 class='alert-heading'>Error al crear la evaluación.</h4>";
             echo "</div>";
         }
-        echo "<a href='actionPais.php?pais=" . $pais . "&accion=accion' class='btn btn-secondary'>Volver</a>";
+        echo "<a href='actionPais.php?codigoPais=" . $datos['codigo'] . "' class='btn btn-secondary'>Volver</a>";
         ?>
     </div>
-    <?php
+
+<?php
 include_once "../estructura/Footer.php";
 ?>
-
-</body>
-</html>

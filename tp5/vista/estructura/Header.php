@@ -12,22 +12,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Pais</title>
 
     <style>
- 
-        html, body {
-            height: 100%;
-            margin: 0;
-            width: 100%;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            
-        }
-
         .titulo {
             text-decoration: none;
             color: black;
@@ -40,12 +27,10 @@
         }
 
         footer {
-            margin-top: auto;
+            /* margin-top: auto; */
             padding: 10px;
             text-align: center;
-            width: 100%;
-            
-            
+            width: 100%;                    
         }
 
         nav.navbar {
@@ -54,7 +39,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg bg-info">
             <a class="titulo" href="../indexPrincipal.php">

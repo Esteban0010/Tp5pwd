@@ -1,12 +1,6 @@
 <?php
 include_once '../../configuracion.php';
 
-include_once "../estructura/Header.php";
-
-
-// Listar comentarios
-
-
 $datos = data_submitted();
 
 // Validar si se envió el país antes de intentar usar la función country.
@@ -38,26 +32,17 @@ foreach ($arrayComentarios as &$comentario) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pais</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-light">
+<?php
+include_once "../estructura/Header.php";
+?>
 
     <div class="container mt-2">
         <div class="row justify-content-center">
-            <div class="col-md-9"> <!-- antes era <div class="col-md-8">  -->
+            <div class="col-md-12"> <!-- antes era <div class="col-md-8">  -->
                 <!-- Card para mostrar la información del país -->
                 <?php
 
-                if ($nombrePais) {
+                if ($pais) {
 
                     echo "<div class='card shadow'>";
                     echo "<div class='card-header bg-primary text-white text-center'>";
@@ -108,7 +93,7 @@ foreach ($arrayComentarios as &$comentario) {
                     // Campo oculto para el país     
                     echo "<input type='hidden' id='pais' name='pais' value='" . $nombrePais . "'>";
                     // Campo oculto para el coidgo ISO del país  
-                    echo "<input type='hidden' id='codigo' name='codigo' value='" . $datos['pais'] . "'>";
+                    echo "<input type='hidden' id='codigo' name='codigo' value='" . $datos['codigoPais'] . "'>";
 
                     echo "<input type='submit' class='btn btn-primary w-100' value='Enviar'></input>";
 
