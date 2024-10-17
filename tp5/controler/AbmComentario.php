@@ -123,7 +123,7 @@ class AbmComentario {
      * @param array $param
      * @return ARRAY
      */
-    public function darArray($param) {
+    public function darArray($param="") {
         
         $arregloObjComentario = $this->buscar($param);
         $listadoArray = [];
