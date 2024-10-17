@@ -21,16 +21,17 @@ $arrayEvaluaciones = $objEvaluaciones->darArray();
 
 // Unir cada comentario con su evaluación correspondiente
 foreach ($arrayComentarios as $key => $comentario) {
+    $arrayComentarios[$key]['score'] = null; // Inicializar score a null
     // Buscar la evaluación que corresponde a este comentario
     foreach ($arrayEvaluaciones as $evaluacion) {
         if ($evaluacion['id_comentario'] == $comentario['id']) {
             // Agregar el score de la evaluación al array de comentarios
-            $comentario['score'] = $evaluacion['sentimiento'];
+            $arrayComentarios[$key]['score'] = $evaluacion['sentimiento'];
             break;
         }
     }
 }
-print_r($arrayComentarios)
+
 ?>
 
 <?php
