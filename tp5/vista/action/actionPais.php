@@ -36,7 +36,7 @@ foreach ($arrayComentarios as &$comentario) {
 include_once "../estructura/Header.php";
 ?>
 
-    <div class="container mt-2">
+    <!-- <div class="container mt-2"> -->
         <div class="row justify-content-center">
             <div class="col-md-12"> <!-- antes era <div class="col-md-8">  -->
                 <!-- Card para mostrar la información del país -->
@@ -114,48 +114,49 @@ include_once "../estructura/Header.php";
                 ?>
             </div>
         </div>
-    </div>
-    <h2 class="my-4">Comentarios</h2>
-    <div class="comentarios">
-        <?php if (count($arrayComentarios) > 0): ?>
-            <?php foreach ($arrayComentarios as $comentario): ?>
-                <?php
-                // Obtener el score del comentario
-                $score = $comentario['score'];
+    
+        <h2 class="my-4">Comentarios</h2>
+        <div class="comentarios">
+            <?php if (count($arrayComentarios) > 0): ?>
+                <?php foreach ($arrayComentarios as $comentario): ?>
+                    <?php
+                    // Obtener el score del comentario
+                    $score = $comentario['score'];
 
-                // Asignar una clase de color en función del score
-                if ($score < 0.0) {
-                    $bgColor = 'bg-danger'; // Rojo para score menor a 0.0
-                } elseif ($score <= 0.3) {
-                    $bgColor = 'bg-warning'; // Naranja para score entre 0.0 y 0.3
-                } elseif ($score <= 0.6) {
-                    $bgColor = 'bg-warning'; // Amarillo para score entre 0.3 y 0.6
-                } elseif ($score <= 0.8) {
-                    $bgColor = 'bg-success'; // Verde para score entre 0.6 y 0.8
-                } else {
-                    $bgColor = 'bg-primary'; // Azul para score mayor a 0.8
-                }
-                ?>
-                <div class="col-12 mb-3">
-                    <div class="card <?php echo $bgColor; ?>">
-                        <div class="card-body">
-                            <h5 class="card-title">Autor: <?php echo htmlspecialchars($comentario['autor']); ?></h5>
-                            <p class="card-text">Comentario: <?php echo htmlspecialchars($comentario['comentario']); ?></p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Fecha: <?php echo htmlspecialchars($comentario['fecha_creacion']); ?></small><br>
-                            <small class="text-muted">País: <?php echo htmlspecialchars($comentario['pais']); ?></small><br>
-                            <small class="text-muted">Score: <?php echo htmlspecialchars($score); ?></small>
+                    // Asignar una clase de color en función del score
+                    if ($score < 0.0) {
+                        $bgColor = 'bg-danger'; // Rojo para score menor a 0.0
+                    } elseif ($score <= 0.3) {
+                        $bgColor = 'bg-warning'; // Naranja para score entre 0.0 y 0.3
+                    } elseif ($score <= 0.6) {
+                        $bgColor = 'bg-warning'; // Amarillo para score entre 0.3 y 0.6
+                    } elseif ($score <= 0.8) {
+                        $bgColor = 'bg-success'; // Verde para score entre 0.6 y 0.8
+                    } else {
+                        $bgColor = 'bg-primary'; // Azul para score mayor a 0.8
+                    }
+                    ?>
+                    <div class="col-12 mb-3">
+                        <div class="card <?php echo $bgColor; ?>">
+                            <div class="card-body">
+                                <h5 class="card-title">Autor: <?php echo htmlspecialchars($comentario['autor']); ?></h5>
+                                <p class="card-text">Comentario: <?php echo htmlspecialchars($comentario['comentario']); ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Fecha: <?php echo htmlspecialchars($comentario['fecha_creacion']); ?></small><br>
+                                <small class="text-muted">País: <?php echo htmlspecialchars($comentario['pais']); ?></small><br>
+                                <small class="text-muted">Score: <?php echo htmlspecialchars($score); ?></small>
+                            </div>
                         </div>
                     </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-12">
+                    <p>No hay comentarios disponibles.</p>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <div class="col-12">
-                <p>No hay comentarios disponibles.</p>
-            </div>
-        <?php endif; ?>
-    </div>
+            <?php endif; ?>
+        </div>
+    
 
 
 <?php

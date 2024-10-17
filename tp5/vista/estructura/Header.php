@@ -15,6 +15,15 @@
     <title>Pais</title>
 
     <style>
+        html, body {
+            height: 100%;
+            margin: 0
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
         .titulo {
             text-decoration: none;
             color: black;
@@ -27,7 +36,7 @@
         }
 
         footer {
-            /* margin-top: auto; */
+            margin-top: auto;            
             padding: 10px;
             text-align: center;
             width: 100%;                    
@@ -39,7 +48,7 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body>
     <header>
         <nav class="navbar navbar-expand-lg bg-info">
             <a class="titulo" href="../indexPrincipal.php">
@@ -47,3 +56,4 @@
             </a>
         </nav>
     </header>
+    <main class="container mt-2">
