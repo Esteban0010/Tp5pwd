@@ -156,7 +156,7 @@ include_once "../estructura/Header.php";
             echo "<input type='submit' class='btn btn-primary w-100' value='Enviar'></input>";
 
             // Boton Volver
-            echo "<a href='../indexPrincipal.php' class='btn btn-secondary mt-2'>Volver Formulario</a>";
+            echo "<a href='indexPrincipal.php' class='btn btn-secondary mt-2'>Volver Formulario</a>";
 
             echo "</form>";
 

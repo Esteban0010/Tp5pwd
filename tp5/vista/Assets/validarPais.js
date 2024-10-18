@@ -5,7 +5,7 @@ function validar() {
     let nombrePais = inputPais.val().trim().toLowerCase();
 
     let validar = false;
-    // Lista de países con sus códigos
+    // Lista de países
     const countries = {
         'afganistán': 'AF',
         'albania': 'AL',
@@ -204,20 +204,18 @@ function validar() {
     inputPais.removeClass('is-invalid is-valid');
 
     if (nombrePais in countries) {
-        // Recuperar el código del país
+        
         let codigoPais = countries[nombrePais];
         
         // Mostrar el código del país en un campo oculto (si es necesario)
         $('#codigoPais').val(codigoPais);
         
-        // Aplicar clase válida al input
         inputPais.addClass('is-valid');
         
-        validar = true; // Permitir envío del formulario
+        validar = true; 
     } else {
-        // Si el país no es válido, mostrar error
         inputPais.addClass('is-invalid');
-        validar = false; // Evitar envío del formulario
+        validar = false;
     }
 
     return validar;

@@ -1,5 +1,5 @@
 <?php
-include_once "estructura/Header.php";
+include_once "../estructura/Header.php";
 ?>
 
 
@@ -7,9 +7,9 @@ include_once "estructura/Header.php";
 
     <div class="container d-flex justify-content-center align-items-center" id="container" style="height: 70vh;">
         <div class="container text-center my-4">
-            <img src="Assets/imagen/paises.jpg" alt="Imagen de países" class="img-fluid rounded">
+            <img src="../Assets/imagen/paises.jpg" alt="Imagen de países" class="img-fluid rounded">
         </div>
-        <form action="action/actionPais.php" method="POST" class="bg-white p-4 rounded shadow"
+        <form action="actionPais.php" method="POST" class="bg-white p-4 rounded shadow"
             style="width: 100%; max-width: 400px;" onsubmit="return validar()">
             <h2 class="text-center mb-4">Buscar País</h2>
             <div class="mb-3">
@@ -29,8 +29,8 @@ include_once "estructura/Header.php";
 
 
     <!-- js validacion formulario -->
-    <script src="./Assets/validarPais.js"></script>
+    <script src="../Assets/validarPais.js"></script>
 
     <?php
-    include_once "estructura/Footer.php";
+    include_once "../estructura/Footer.php";
     ?>

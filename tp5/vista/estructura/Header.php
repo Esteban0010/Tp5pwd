@@ -79,7 +79,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-black">
-            <a class="titulo" href="../indexPrincipal.php">
+            <a class="titulo" href="indexPrincipal.php">
                 <h2 style="color: white;">Programación Web Dinámica 2024 - Grupo 21</h2>
             </a>
         </nav>
