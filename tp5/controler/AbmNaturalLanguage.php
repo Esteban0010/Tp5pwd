@@ -13,7 +13,7 @@ class AbmNaturalLanguage
         $config = include('../../credencialesGoogle.php');
         $this->languageClient = new LanguageClient([
             'projectId' => $config['google_project_id'],
-            'keyFilePath' => '../../../analisis-de-datos-437621-f4b9e9b5a2af.json'
+            'keyFilePath' => '../../../proyecto-libreria-439019-147e9f5a0b07.json'
         ]);
     }
 
