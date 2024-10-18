@@ -8,7 +8,7 @@ function validarFormulario() {
 
    
     const regexAutor = /^[a-zA-ZÁÉÍÓÚáéíóúñÑ\s]+$/;
-    const regexMsj = /^[a-zA-ZÁÉÍÓÚáéíóúñÑ][a-zA-ZÁÉÍÓÚáéíóúñÑ\s,.!?¿¡]*\s[a-zA-ZÁÉÍÓÚáéíóúñÑ\s,.!?¿¡]*$/;
+    const regexMsj = /^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+[a-zA-ZÁÉÍÓÚáéíóúñÑ\s\d,.!?¿¡]*\s[a-zA-ZÁÉÍÓÚáéíóúñÑ\s\d,.!?¿¡]*$/;
     const tieneEspacio = /\s/; // Para verificar que haya al menos un espacio
 
    
