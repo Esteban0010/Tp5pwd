@@ -129,18 +129,22 @@ include_once "../estructura/Header.php";
             echo "<div class='card-body'>";
 
             // Formulario
-            echo "<form id='comment-form' action='./actionEvaluacion.php' method='POST'>";
+            echo "<form id='comment-form' action='./actionEvaluacion.php' method='POST' onsubmit='return validarFormulario()'>";
+            
+            
 
             // Input Autor
             echo "<div class='form-group mb-3'>";
             echo "<label for='autor' class='form-label'>Autor:</label>";
             echo "<input type='text' class='form-control' name='autor' id='autor' required>";
+            echo "<div class='invalid-feedback'>El nombre del autor solo puede contener letras.</div>";
             echo "</div>";
 
             // Input Mensaje
             echo "<div class='form-group mb-3'>";
             echo "<label for='msj' class='form-label'>Mensaje:</label>";
             echo "<input type='text' class='form-control' name='msj' id='msj' required>";
+            echo "<div class='invalid-feedback'>El mensaje solo puede comenzar con letras y debe incluir al menos un espacio.</div>";
             echo "</div>";
 
             // Campo oculto para el país     
@@ -207,7 +211,8 @@ include_once "../estructura/Header.php";
     <?php endif; ?>
 </div>
 
-
+  <!-- js validacion formulario -->
+  <script src="../Assets/validarComentario.js"></script>
 
 <?php
 include_once "../estructura/Footer.php";
