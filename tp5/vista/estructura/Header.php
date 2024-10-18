@@ -16,8 +16,7 @@
     <title>Pais</title>
 
     <style>
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0
         }
@@ -25,7 +24,7 @@
         body {
             display: flex;
             flex-direction: column;
-        }
+        }        
 
         .titulo {
             text-decoration: none;
@@ -36,8 +35,14 @@
 
         .titulo:hover {
             color: white;
-        }
+        }    
 
+        #container{
+            position: relative; /* Para ser el contenedor de referencia */
+            width: 100%; /* Que sea responsivo */
+            height: auto; /* Ajusta según el contenido de la imagen */
+        }
+        
         footer {
             margin-top: auto;
             padding: 10px;
@@ -67,7 +72,7 @@
         .bg-beige {
             background-color: #f5f5dc !important;
             /* Fondo beige */
-        }
+        }        
     </style>
 </head>
 

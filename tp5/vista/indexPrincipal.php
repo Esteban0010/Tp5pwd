@@ -4,10 +4,11 @@ include_once "estructura/Header.php";
 
 
 <body class="bg-light">
-    <div class="container text-center my-4">
-        <img src="Assets/imagen/paises.jpg" alt="Imagen de países" class="img-fluid rounded">
-    </div>
-    <div class="container d-flex justify-content-center align-items-center" style="height: 70vh;">
+
+    <div class="container d-flex justify-content-center align-items-center" id="container" style="height: 70vh;">
+        <div class="container text-center my-4">
+            <img src="Assets/imagen/paises.jpg" alt="Imagen de países" class="img-fluid rounded">
+        </div>
         <form action="action/actionPais.php" method="POST" class="bg-white p-4 rounded shadow"
             style="width: 100%; max-width: 400px;" onsubmit="return validar()">
             <h2 class="text-center mb-4">Buscar País</h2>
