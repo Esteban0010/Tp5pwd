@@ -29,7 +29,6 @@ class Comentario{
         $this->setPais($pais);        
     }
 
-    /* get */
     public function getId()
     {
         return $this->id;
@@ -64,7 +63,7 @@ class Comentario{
         return $this->mensajeoperacion;
     }
     
-    /* set */
+
     public function setId($valor)
     {
         $this->id = $valor;
@@ -181,8 +180,6 @@ class Comentario{
         return $resp;
     }
 
-
-    //retorna un array
     public static function listar($parametro = "")
     {
         $arreglo = array();
@@ -209,7 +206,6 @@ class Comentario{
             }  
 
         } else {
-            //$this->setmensajeoperacion("Comentario->listar: " . $base->getError());
             throw new Exception("Comentarios->listar: " . $base->getError());
         }
 

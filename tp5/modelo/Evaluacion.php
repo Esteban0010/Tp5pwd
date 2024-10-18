@@ -26,7 +26,6 @@ class Evaluacion
       
     }
 
-    /* Getters */
     public function getId()
     {
         return $this->id;
@@ -59,7 +58,6 @@ class Evaluacion
         return $this->mensajeoperacion;
     }
 
-    /* Setters */
     public function setId($value)
     {
         $this->id = $value;
@@ -92,7 +90,6 @@ class Evaluacion
         $this->mensajeoperacion = $valor;
     }
 
-    /* Métodos de operación con la base de datos */
     public function cargar()
     {
         $resp = false;
@@ -196,8 +193,8 @@ class Evaluacion
             $res = $base->Ejecutar($sql);
             if ($res > -1) {
                 while ($row = $base->Registro()) {
-                    $objComentario = new Comentario(); // Asumiendo que tienes una clase Comentario
-                    $objComentario->setId($row['id_comentario']); // Asegúrate de que la clase Comentario esté bien definida
+                    $objComentario = new Comentario(); 
+                    $objComentario->setId($row['id_comentario']); 
                     $objComentario->cargar();
                     $obj = new Evaluacion($objComentario, $row['sentimiento'], $row['entidades'], $row['syntaxis']);
                     array_push($arreglo, $obj);

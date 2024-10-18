@@ -122,10 +122,8 @@ include_once "../estructura/Header.php";
             <?php if (count($arrayComentarios) > 0): ?>
                 <?php foreach ($arrayComentarios as $comentario): ?>
                     <?php
-                    // Obtener el score del comentario
                     $score = $comentario['score'];
 
-                    // Asignar una clase de color en función del score
                     if ($score < 0.0) {
                         $bgColor = 'bg-danger'; // Rojo para score menor a 0.0
                     } elseif ($score <= 0.3) {

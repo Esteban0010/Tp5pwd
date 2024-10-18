@@ -8,21 +8,17 @@ class AbmNaturalLanguage {
 
     public function __construct()
     {
-        // Configuración del cliente de Google Cloud Natural Language
-        $config = include('../../credencialesGoogle.php');
+        // Configuracion del cliente de Google Cloud Natural Language
+        $config = include('../../configuracionn.php');
         $this->languageClient = new LanguageClient([
             'projectId' => $config['google_project_id'],
-            'keyFilePath' => '../../../analisis-de-datos-437621-f4b9e9b5a2af.json' // Reemplaza con la ruta a tu archivo de credenciales
+            'keyFilePath' => '../../../analisis-de-datos-437621-f4b9e9b5a2af.json' 
         ]);
     }
 
-    /**
-     * Analiza un texto usando Google Cloud Natural Language y guarda los resultados en la DB.
-     */
+
     public function analizarTextoYGuardar($texto)
     {
-       
-            // Realiza el análisis del texto
             $response = $this->languageClient->analyzeSentiment($texto);
             $sentimiento = $response->sentiment();
 

@@ -1,19 +1,17 @@
 <?php
 
-// namespace ABM\control;
 
-// use ABM\model\CountryModel;
-use Rinvex\Country\CountryLoader; // Asegúrate de importar la clase correctamente
+
+use Rinvex\Country\CountryLoader; 
 
 class AbmPais
 {
-    // Método para obtener el país por su código
+
     public function getCountryByCode($code)
     {
-        // Aquí va la lógica para obtener el país por su código, por ejemplo:
-        // Puedes usar la librería `rinvex/country` o una base de datos
+        
 
-        $country = country($code); // Usando la librería rinvex/country
+        $country = country($code); // Usando la libreria rinvex/country
 
         return [
             'name' => $country->getName(),
@@ -23,11 +21,10 @@ class AbmPais
             'borders' => $country->getBorders(),
             'flag' => $country->getFlag(),
             'emoji' => $country->getEmoji(),
-            // Agrega más detalles si es necesario
         ];
     }
 
-    // Método para obtener detalles adicionales del país
+
     public function getCountryDetails($code)
     {
         $country = country($code);
@@ -38,7 +35,6 @@ class AbmPais
             'borders' => $country->getBorders(),
             'flag' => $country->getFlag(),
             'emoji' => $country->getEmoji(),
-            // Agrega más detalles según lo necesites
         ];
     }
 
@@ -245,44 +241,35 @@ class AbmPais
         ];
 
 
-        // Obtener los nombres y códigos de los países como arrays
+      
         $countryNames = array_keys($countries);
         $countryCodes = array_values($countries);
 
         $i = 0;
         $numCountries = count($countryNames);
-        // Si no se encuentra el país, devuelve null o algún valor por defecto
+      
         $rta = null;
-        // Mientras no se haya encontrado el país y queden países por recorrer
+     
         while ($i < $numCountries) {
             if (strtolower($countryNames[$i]) === $nameLower) {
-                $rta = $countryCodes[$i]; // Devuelve el código del país
+                $rta = $countryCodes[$i];
             }
             $i++;
         }
 
-
-        // Si no se encuentra el país, retorna null o un mensaje de error
         return $rta;
     }
 
     public function getCountryByName($name)
     {
-        // Obtener el código del país por el nombre
+
         $countryCode = $this->getCountryCodeByName($name);
 
         if ($countryCode) {
-            // Ahora usa el código para buscar el país
+ 
             return $this->getCountryByCode($countryCode);
         }
 
-        return null; // Retorna null si no se encue
-
-
-
-
-
-
-
+        return null; 
     }
 }
