@@ -1,4 +1,4 @@
-<html> 
+<html>
 
 <head>
     <!-- css bootstrap 5 -->
@@ -10,12 +10,14 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pais</title>
 
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0
         }
@@ -24,6 +26,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .titulo {
             text-decoration: none;
             color: black;
@@ -36,23 +39,43 @@
         }
 
         footer {
-            margin-top: auto;            
+            margin-top: auto;
             padding: 10px;
             text-align: center;
-            width: 100%;                    
+            width: 100%;
         }
 
         nav.navbar {
             justify-content: center;
+        }
+
+        .bg-pastel-red {
+            background-color: #ffb3b3 !important;
+            /* Rojo pastel */
+        }
+
+        .bg-pastel-blue {
+            background-color: #b3d1ff !important;
+            /* Azul pastel */
+        }
+
+        .bg-pastel-green {
+            background-color: #b3ffb3 !important;
+            /* Verde pastel */
+        }
+
+        .bg-beige {
+            background-color: #f5f5dc !important;
+            /* Fondo beige */
         }
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-info">
+        <nav class="navbar navbar-expand-lg bg-black">
             <a class="titulo" href="../indexPrincipal.php">
-                <h2>Programación Web Dinámica 2024 - Grupo 21</h2>
+                <h2 style="color: white;">Programación Web Dinámica 2024 - Grupo 21</h2>
             </a>
         </nav>
     </header>

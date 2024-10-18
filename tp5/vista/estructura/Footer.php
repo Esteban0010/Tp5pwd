@@ -1,5 +1,5 @@
 </main>
-<footer class="bg-info" style="width: 100%; text-align: center; padding: 10px 0;">
+<footer class="bg-black" style="width: 100%; text-align: center; padding: 10px 0; color:white">
     <div>
         Universidad Nacional del Comahue
     </div>
