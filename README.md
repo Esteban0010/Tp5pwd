@@ -1,5 +1,5 @@
 <h1>Aplicación de Procesamiento de Natural Lenguage con Evaluación de Sentimientos y Rinvex/Countries en PHP</h1>
-<p>Este proyecto integra la API de Google Cloud Natural Language para evaluar el sentimiento de los comentarios realizados sobre países, utilizando la librería <strong>Rinvex/Countries</strong> para la selección de países en una aplicación PHP basada en el patrón MVC (Modelo-Vista-Controlador).</p>
+<p>Este proyecto integra la API de Google Cloud Natural Language para evaluar el sentimiento de los comentarios realizados sobre países, utilizando la librería <strong>Rinvex/Countries</strong> para la selección de países en una aplicación PHP basada en el patrón MVC (Modelo-Vista-Controlador), ejecutada localmente con <strong>XAMPP</strong> en la carpeta <code>htdocs</code>.</p>
 
 <h2>Características</h2>
 <ul>
@@ -12,7 +12,7 @@
 <h2>Requisitos previos</h2>
 <p>Antes de ejecutar este proyecto, asegúrate de tener lo siguiente:</p>
 <ul>
-    <li>PHP 7.3+</li>
+    <li>PHP 7.3+ (Instalado con XAMPP)</li>
     <li>Composer para gestionar dependencias</li>
     <li>Cuenta de Google Cloud y clave de la API de Google Cloud Natural Language</li>
     <li>Google Cloud SDK instalado y configurado para autenticación</li>
@@ -63,30 +63,30 @@ cd Tp5pwd
 </code></pre>
 
 <h3>Paso 4: Configuración de la base de datos (opcional)</h3>
-<p>Si decides guardar los comentarios y resultados de análisis, configura la base de datos en <code>config/database.php</code>. Ejecuta el siguiente script SQL para crear la tabla de comentarios:</p>
+<p>Si decides guardar los comentarios y resultados de análisis, configura la base de datos en <code>config/database.php</code>. Ejecuta el siguiente script SQL para crear las tablas de comentarios y evaluaciones:</p>
 
 <pre><code>CREATE TABLE `comentarios` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,                     -- Identificador único del comentario
-    `autor` VARCHAR(255) NOT NULL,                            -- Nombre del autor del comentario
-    `comentario` TEXT NOT NULL,                               -- El contenido del comentario
-    `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- Fecha de creación del comentario
-    `pais` VARCHAR(16) NOT NULL,                              -- País del comentario
+    `id` INT(11) NOT NULL AUTO_INCREMENT,                    
+    `autor` VARCHAR(255) NOT NULL,                           
+    `comentario` TEXT NOT NULL,                              
+    `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     
+    `pais` VARCHAR(16) NOT NULL,                              
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE `evaluacion` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,  -- Identificador único para cada evaluación
-    `id_comentario` INT(11) NOT NULL,      -- Clave foránea que relaciona el comentario con una evaluación
-    `sentimiento` FLOAT NOT NULL,          -- Almacena el puntaje de sentimiento (análisis de sentimiento)
-    `entidades` TEXT NOT NULL,             -- Almacena las entidades detectadas (formato JSON)
-    `syntaxis` TEXT NOT NULL,              -- Almacena la estructura de la sintaxis (formato JSON)
-    PRIMARY KEY (`id`),                    -- Clave primaria en el campo `id`
-    FOREIGN KEY (`id_comentario`) REFERENCES `comentarios`(`id`) ON DELETE CASCADE  -- Relación con comentario
+    `id` INT(11) NOT NULL AUTO_INCREMENT,  
+    `id_comentario` INT(11) NOT NULL,      
+    `sentimiento` FLOAT NOT NULL,          
+    `entidades` TEXT NOT NULL,             
+    `syntaxis` TEXT NOT NULL,              
+    PRIMARY KEY (`id`),                    
+    FOREIGN KEY (`id_comentario`) REFERENCES `comentarios`(`id`) ON DELETE CASCADE  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 </code></pre>
 
 <h3>Paso 5: Ejecutar el proyecto</h3>
-<p>Inicia tu servidor de desarrollo de PHP:</p>
+<p>Ubica el proyecto en la carpeta <code>htdocs</code> de XAMPP y arranca tu servidor:</p>
 <pre><code>php -S localhost:8000
 </code></pre>
 <p>Visita <code>http://localhost:8000</code> en tu navegador para comenzar a usar la aplicación.</p>
@@ -101,7 +101,7 @@ CREATE TABLE `evaluacion` (
 <h2>Bibliotecas utilizadas</h2>
 <ul>
     <li><strong>API de Google Cloud Natural Language</strong> - Para el análisis de sentimiento de los comentarios.</li>
-    <li><strong>Rinvex/Countries</strong> - Para la búsqueda y selección de países.</li>
+    <li><strong>Rinvex/Countries</strong> - Para la búsqueda y selección de países. Rinvex/Countries permite obtener información detallada de países, como el nombre oficial, el código ISO, la moneda, y más, con soporte multilenguaje.</li>
 </ul>
 
 
