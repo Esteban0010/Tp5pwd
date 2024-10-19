@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "proyecto-libreria-439019",
+  "private_key_id": "147e9f5a0b0751714b610f485a72cfab4f9105f7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCxy+AeNNBfYNMg\n8qYm2WvDeW9jPnVVTPbG7H3XI3kN9Tf78FmKTGTD/kUaNnyYwGnHi6BpSKHSsbxT\nVOpvqrlksppxqUuZsoaiQGbUgrNAhE/c3TXK/ClKpORaPsj//0j7hIERX3lWflcI\nwXbgcgRhPcQWd/5I3yRs3nW4YJ931KFzHKSLlE1meCDpgHmjmyS6jcOu5zfgtbEC\nwNIl098M3L7HsYOTxyb+2BmbtURb6XjrZWObpQLovNg1j1cwhjEJfXB91LuqGXvB\niEaXVkzmnDXTWhqQOXQcn57+KenQ3d6CyPSCpA64poq356dA4F/b+ZFzJ0VKF8wJ\n4JK8xhGlAgMBAAECggEAAT8gMaYGJf0MTelVn+UbW9IApW39LZ1uB4QF99mwUhg7\njcEoJ4+Uj0k7m8zw/7MtqrAAbmyLceo8G0t3n1PPm/Sin5Rjys6VIhMYhXnrHtMu\nqipE48jz0ymnzjgteZoFHXpW21PTinc1TgLpPfaesD3aH5w0xLcHztmacrH+vDzW\n7NcEx6X+oOKM1KnmNWPfaficKTKQ/9LVc7slHlFbQWjeLwzgGQ3nQ9Zfbm0MO+yX\noRwx5sw3xYx0da9FmseKxzjxUyhGnhgFj53wPi7P32KfcPtPhvt6BCcX8chIdKVs\nsIBBzs2/AzV83mzNOHZRg4qQtjNtgatf4Qv+NjGfoQKBgQDatthX5e+QpcOU2QlE\n2n9OYnV19f0HGbpbwRmYcfdM8gbPTDQmQvMbXq2rSovjZ08MjuhlyiqirBTkbZBi\ngdtjLqbiMQ4XeLqttzAKIeQrnMk12xhGGel+pqJ39UoLlqimsyXvTwn8KZ9zgoql\nLnpHoZdF6qxSbRNbkc3/2oTUcQKBgQDQG0nNzrfNz+1BAvdqqmvk6psnqpTXJB1x\nWvLMzg+BzMTkG1ou1bPVK+2N6CeeQU4RKH6oBlauXWZ8Mx0od24LjHBL8i/JCS34\nTgkzwXaOYByjJlu7OmtCRbx4uRQa/mIoiBNjUn4KOhDMC3vY+d0N/9dt7T4bM3A3\naEQDmRWadQKBgQCAXHVmSPWrwA2kSyiMd2vl1hU38PHae/gKp67c8G4Cg70JZqDo\nn7xMIOnuMOcexF/5b9nm+5rANBxi4AawOaRHdnbNI5swnVN6ZpvUJoXiLrdMW1TI\nt6Z5BVUu8A/P81Dx3QxzgcDLdKY3RbMXNMrhRW4hw5P1ID0PLehns5jnkQKBgQCB\nwOHtfnw/yOrm5BCb4xJOsrB2tPcEhTIOYWSNqdUlWyVQDHXYScpMmY0OM7ewBovE\nSvldjkYxhW7G9Z+ygXSNoszJrYF52U1eSlmWeYOQFgEFAH+lZzFFKvHuW4dbpUxS\ndTWRcffALKAYePiJOpFHj0Mk+Q0GLLZE9a+ihqpfmQKBgQDN7v2VDwhZRtzsnGIa\nfvzvfV/NjeBeLQ6rICc49UNQW2q/VLz/zcrQBRH2tQiBBRGwFBBpyScARbHlfQuR\nbUTxMd0OKi02NVtdU7IprUNlqTMeiZ6sAV98lUYeqa7IaabkQtdA+VPIzEmcktpN\nWxewBDnmjm/ptK2EuPOX+t7/9A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "esteban@proyecto-libreria-439019.iam.gserviceaccount.com",
+  "client_id": "105438410774367179985",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/esteban%40proyecto-libreria-439019.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
