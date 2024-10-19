@@ -43,8 +43,8 @@
 <h2>Instrucciones de configuración</h2>
 
 <h3>Paso 1: Clonar el repositorio</h3>
-<pre><code>git clone https://github.com/tu-usuario/tu-repositorio.git
-cd tu-repositorio
+<pre><code>git clone https://github.com/Esteban0010/Tp5pwd.git
+cd Tp5pwd
 </code></pre>
 
 <h3>Paso 2: Instalar dependencias</h3>
@@ -65,13 +65,24 @@ cd tu-repositorio
 <h3>Paso 4: Configuración de la base de datos (opcional)</h3>
 <p>Si decides guardar los comentarios y resultados de análisis, configura la base de datos en <code>config/database.php</code>. Ejecuta el siguiente script SQL para crear la tabla de comentarios:</p>
 
-<pre><code>CREATE TABLE comentarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    pais VARCHAR(100),
-    comentario TEXT,
-    sentimiento VARCHAR(50),
-    fecha_creacion DATETIME
-);
+<pre><code>CREATE TABLE `comentarios` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,                     -- Identificador único del comentario
+    `autor` VARCHAR(255) NOT NULL,                            -- Nombre del autor del comentario
+    `comentario` TEXT NOT NULL,                               -- El contenido del comentario
+    `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     -- Fecha de creación del comentario
+    `pais` VARCHAR(16) NOT NULL,                              -- País del comentario
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE `evaluacion` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,  -- Identificador único para cada evaluación
+    `id_comentario` INT(11) NOT NULL,      -- Clave foránea que relaciona el comentario con una evaluación
+    `sentimiento` FLOAT NOT NULL,          -- Almacena el puntaje de sentimiento (análisis de sentimiento)
+    `entidades` TEXT NOT NULL,             -- Almacena las entidades detectadas (formato JSON)
+    `syntaxis` TEXT NOT NULL,              -- Almacena la estructura de la sintaxis (formato JSON)
+    PRIMARY KEY (`id`),                    -- Clave primaria en el campo `id`
+    FOREIGN KEY (`id_comentario`) REFERENCES `comentarios`(`id`) ON DELETE CASCADE  -- Relación con comentario
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 </code></pre>
 
 <h3>Paso 5: Ejecutar el proyecto</h3>
