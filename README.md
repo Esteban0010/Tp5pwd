@@ -1,4 +1,4 @@
-<h1>Aplicación de Procesamiento de Lenguaje Natural con Evaluación de Sentimientos y Rinvex/Countries en PHP</h1>
+<h1>Aplicación de Procesamiento de Natural Lenguage con Evaluación de Sentimientos y Rinvex/Countries en PHP</h1>
 <p>Este proyecto integra la API de Google Cloud Natural Language para evaluar el sentimiento de los comentarios realizados sobre países, utilizando la librería <strong>Rinvex/Countries</strong> para la selección de países en una aplicación PHP basada en el patrón MVC (Modelo-Vista-Controlador).</p>
 
 <h2>Características</h2>
