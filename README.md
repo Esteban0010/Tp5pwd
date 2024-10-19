@@ -46,7 +46,7 @@
 <pre><code>
     cd C:\xampp\htdocs
     git clone https://github.com/Esteban0010/Tp5pwd.git
-
+    cd /tp5pwd
 </code></pre>
 
 <h3>Paso 2: Instalar dependencias</h3>
