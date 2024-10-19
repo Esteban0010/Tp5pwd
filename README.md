@@ -23,9 +23,9 @@
 <p>El proyecto utiliza el patrón MVC para organizar el código.</p>
 
 <pre><code>/app
-  /controllers  // Controladores que gestionan la lógica
-  /models       // Modelos que gestionan los datos
-  /views        // Vistas que muestran el contenido al usuario
+/controllers  // Controladores que gestionan la lógica
+/models       // Modelos que gestionan los datos
+/views        // Vistas que muestran el contenido al usuario
 /config         // Archivos de configuración
 /vendor         // Dependencias instaladas con Composer
 </code></pre>
@@ -93,12 +93,9 @@ CREATE TABLE `evaluacion` (
 <li>En el controlador de países (app/controllers/AbmPais.php</code>), usa la librería para cargar y mostrar la información de los países. Un ejemplo básico de cómo acceder a los datos es el siguiente:</li>
 <pre><code>
 use Rinvex\Country\CountryLoader; 
-
-class AbmPais
-{
+class AbmPais {
     public function paisInformacion($param){
-        $pais = country($param);
-    
+        $pais = country($param);    
         $array = [
             "nombre" => $pais->getName(),  
             "nombreOficial" => $pais->getOfficialName(), 
@@ -115,14 +112,11 @@ class AbmPais
             "region" => $pais->getRegion(),
             "sinLitoral" => $pais->isLandlocked(),
             "emoji" => $pais->getEmoji(),
-            "bandera" => $pais->getFlag()
-            
-        ];
-        
+            "bandera" => $pais->getFlag()            
+        ];        
         return $array;
     }
 }
-
 </code></pre>
 
 <li>En la vista (actionPais.php) (tp5pwd/tp5/vista/pais/actionPais.php</code>), puedes mostrar el array con los datos del país selccionado de la siguiente manera:</li>
