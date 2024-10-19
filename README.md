@@ -1,83 +1,97 @@
-Aplicación de Procesamiento de Lenguaje Natural con Evaluación de Sentimientos y Rinvex/Countries en PHP
-Este proyecto integra la API de Google Cloud Natural Language para evaluar el sentimiento de los comentarios realizados sobre países, utilizando la librería Rinvex/Countries para la selección de países en una aplicación PHP basada en el patrón MVC (Modelo-Vista-Controlador).
+<h1>Aplicación de Procesamiento de Lenguaje Natural con Evaluación de Sentimientos y Rinvex/Countries en PHP</h1>
+<p>Este proyecto integra la API de Google Cloud Natural Language para evaluar el sentimiento de los comentarios realizados sobre países, utilizando la librería <strong>Rinvex/Countries</strong> para la selección de países en una aplicación PHP basada en el patrón MVC (Modelo-Vista-Controlador).</p>
 
-Características
-Búsqueda de países: Utiliza la librería Rinvex/Countries para seleccionar un país.
-Comentarios: Los usuarios pueden agregar comentarios sobre los países seleccionados.
-Análisis de sentimiento: La API de Google Cloud Natural Language evalúa el sentimiento del comentario (positivo, negativo o neutral).
-MVC: Separación clara de responsabilidades mediante el patrón MVC.
-Requisitos previos
-Antes de ejecutar este proyecto, asegúrate de tener lo siguiente:
+<h2>Características</h2>
+<ul>
+    <li><strong>Búsqueda de países</strong>: Utiliza la librería Rinvex/Countries para seleccionar un país.</li>
+    <li><strong>Comentarios</strong>: Los usuarios pueden agregar comentarios sobre los países seleccionados.</li>
+    <li><strong>Análisis de sentimiento</strong>: La API de Google Cloud Natural Language evalúa el sentimiento del comentario (positivo, negativo o neutral).</li>
+    <li><strong>MVC</strong>: Separación clara de responsabilidades mediante el patrón MVC.</li>
+</ul>
 
-PHP 7.3+
-Composer para gestionar dependencias
-Cuenta de Google Cloud y clave de la API de Google Cloud Natural Language
-Google Cloud SDK instalado y configurado para autenticación
-Base de datos MySQL (opcional, si decides guardar los comentarios y resultados)
-Estructura del proyecto
-El proyecto utiliza el patrón MVC para organizar el código.
+<h2>Requisitos previos</h2>
+<p>Antes de ejecutar este proyecto, asegúrate de tener lo siguiente:</p>
+<ul>
+    <li>PHP 7.3+</li>
+    <li>Composer para gestionar dependencias</li>
+    <li>Cuenta de Google Cloud y clave de la API de Google Cloud Natural Language</li>
+    <li>Google Cloud SDK instalado y configurado para autenticación</li>
+    <li>Base de datos MySQL (opcional, si decides guardar los comentarios y resultados)</li>
+</ul>
 
-arduino
-Copiar código
-/app
+<h2>Estructura del proyecto</h2>
+<p>El proyecto utiliza el patrón MVC para organizar el código.</p>
+
+<pre><code>/app
   /controllers  // Controladores que gestionan la lógica
   /models       // Modelos que gestionan los datos
   /views        // Vistas que muestran el contenido al usuario
 /config         // Archivos de configuración
 /vendor         // Dependencias instaladas con Composer
-Archivos clave:
-app/controllers/NaturalLanguageController.php: Maneja la interacción con la API de Google Cloud Natural Language.
-app/controllers/CountryController.php: Gestiona la búsqueda y selección de países usando Rinvex/Countries.
-app/models/Comentario.php: Modelo para gestionar los comentarios.
-app/views/country.php: Página para mostrar la información del país y formulario para agregar comentarios.
-app/views/analysis.php: Página para mostrar los resultados del análisis de sentimiento.
-config/google_cloud.php: Configuración de la API de Google Cloud.
-Instrucciones de configuración
-Paso 1: Clonar el repositorio
-bash
-Copiar código
-git clone https://github.com/tu-usuario/tu-repositorio.git
+</code></pre>
+
+<h3>Archivos clave:</h3>
+<ul>
+    <li><code>app/controllers/NaturalLanguageController.php</code>: Maneja la interacción con la API de Google Cloud Natural Language.</li>
+    <li><code>app/controllers/CountryController.php</code>: Gestiona la búsqueda y selección de países usando Rinvex/Countries.</li>
+    <li><code>app/models/Comentario.php</code>: Modelo para gestionar los comentarios.</li>
+    <li><code>app/views/country.php</code>: Página para mostrar la información del país y formulario para agregar comentarios.</li>
+    <li><code>app/views/analysis.php</code>: Página para mostrar los resultados del análisis de sentimiento.</li>
+    <li><code>config/google_cloud.php</code>: Configuración de la API de Google Cloud.</li>
+</ul>
+
+<h2>Instrucciones de configuración</h2>
+
+<h3>Paso 1: Clonar el repositorio</h3>
+<pre><code>git clone https://github.com/tu-usuario/tu-repositorio.git
 cd tu-repositorio
-Paso 2: Instalar dependencias
-Instala las dependencias de PHP usando Composer:
+</code></pre>
 
-bash
-Copiar código
-composer install
-Paso 3: Configuración de Google Cloud
-Habilita la API de Google Cloud Natural Language en tu consola de Google Cloud.
-Descarga el archivo de credenciales en formato JSON y colócalo en la carpeta /config.
-Actualiza tu archivo .env o config/google_cloud.php con la ruta de las credenciales:
-php
-Copiar código
-putenv('GOOGLE_APPLICATION_CREDENTIALS=/ruta/a/tus/credenciales.json');
-Paso 4: Configuración de la base de datos (opcional)
-Si decides guardar los comentarios y resultados de análisis, configura la base de datos en config/database.php. Ejecuta el siguiente script SQL para crear la tabla de comentarios:
+<h3>Paso 2: Instalar dependencias</h3>
+<p>Instala las dependencias de PHP usando Composer:</p>
+<pre><code>composer install
+</code></pre>
 
-sql
-Copiar código
-CREATE TABLE comentarios (
+<h3>Paso 3: Configuración de Google Cloud</h3>
+<ol>
+    <li>Habilita la API de Google Cloud Natural Language en tu consola de Google Cloud.</li>
+    <li>Descarga el archivo de credenciales en formato JSON y colócalo en la carpeta <code>/config</code>.</li>
+    <li>Actualiza tu archivo <code>.env</code> o <code>config/google_cloud.php</code> con la ruta de las credenciales:</li>
+</ol>
+
+<pre><code>putenv('GOOGLE_APPLICATION_CREDENTIALS=/ruta/a/tus/credenciales.json');
+</code></pre>
+
+<h3>Paso 4: Configuración de la base de datos (opcional)</h3>
+<p>Si decides guardar los comentarios y resultados de análisis, configura la base de datos en <code>config/database.php</code>. Ejecuta el siguiente script SQL para crear la tabla de comentarios:</p>
+
+<pre><code>CREATE TABLE comentarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pais VARCHAR(100),
     comentario TEXT,
     sentimiento VARCHAR(50),
     fecha_creacion DATETIME
 );
-Paso 5: Ejecutar el proyecto
-Inicia tu servidor de desarrollo de PHP:
+</code></pre>
 
-bash
-Copiar código
-php -S localhost:8000
-Visita http://localhost:8000 en tu navegador para comenzar a usar la aplicación.
+<h3>Paso 5: Ejecutar el proyecto</h3>
+<p>Inicia tu servidor de desarrollo de PHP:</p>
+<pre><code>php -S localhost:8000
+</code></pre>
+<p>Visita <code>http://localhost:8000</code> en tu navegador para comenzar a usar la aplicación.</p>
 
-Uso
-Selecciona un país a través del formulario.
-Escribe un comentario sobre el país seleccionado.
-El sistema analizará el comentario utilizando la API de Google Cloud Natural Language y mostrará el resultado del análisis de sentimiento.
-Bibliotecas utilizadas
-API de Google Cloud Natural Language - Para el análisis de sentimiento de los comentarios.
-Rinvex/Countries - Para la búsqueda y selección de países.
-Licencia
-Este proyecto está licenciado bajo la Licencia MIT.
+<h2>Uso</h2>
+<ol>
+    <li>Selecciona un país a través del formulario.</li>
+    <li>Escribe un comentario sobre el país seleccionado.</li>
+    <li>El sistema analizará el comentario utilizando la API de Google Cloud Natural Language y mostrará el resultado del análisis de sentimiento.</li>
+</ol>
 
+<h2>Bibliotecas utilizadas</h2>
+<ul>
+    <li><strong>API de Google Cloud Natural Language</strong> - Para el análisis de sentimiento de los comentarios.</li>
+    <li><strong>Rinvex/Countries</strong> - Para la búsqueda y selección de países.</li>
+</ul>
+
+<h2>Licencia</h2>
+<p>Este proyecto está licenciado bajo la Licencia MIT.</p>
