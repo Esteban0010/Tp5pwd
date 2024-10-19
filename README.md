@@ -93,5 +93,4 @@ cd tu-repositorio
     <li><strong>Rinvex/Countries</strong> - Para la búsqueda y selección de países.</li>
 </ul>
 
-<h2>Licencia</h2>
-<p>Este proyecto está licenciado bajo la Licencia MIT.</p>
+
