@@ -3,7 +3,7 @@
 
 <h2>Características</h2>
 <ul>
-    <li><strong>Búsqueda de países</strong>: Utiliza la librería Rinvex/Countries para seleccionar un país.</li>
+    <li><strong>Búsqueda y información detalladade países</strong>: Utiliza la librería Rinvex/Countries para seleccionar un país y acceder a datos como el nombre oficial del país, el código ISO, la moneda, idiomas y más..</li>
     <li><strong>Comentarios</strong>: Los usuarios pueden agregar comentarios sobre los países seleccionados.</li>
     <li><strong>Análisis de sentimiento</strong>: La API de Google Cloud Natural Language evalúa el sentimiento del comentario (positivo, negativo o neutral).</li>
     <li><strong>MVC</strong>: Separación clara de responsabilidades mediante el patrón MVC.</li>
@@ -86,7 +86,42 @@ CREATE TABLE `evaluacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 </code></pre>
 
-<h3>Paso 5: Ejecutar el proyecto</h3>
+<h3>Paso 6: Configuración de Rinvex/Countries</h3>
+<li>Asegúrate de que la librería esté correctamente cargada en tu proyecto añadiendo la siguiente línea al inicio de tus archivos que la usen:</li>
+<pre><code>require 'vendor/autoload.php';</code></pre>
+
+<li>En el controlador de países (<code>app/controllers/CountryController.php</code>), usa la librería para cargar y mostrar la información de los países. Un ejemplo básico de cómo acceder a los datos es el siguiente:</li>
+<pre><code>
+use Rinvex\Country\CountryLoader;
+
+class CountryController {
+    public function index() {
+        $countries = CountryLoader::countries();
+        return view('pais/indexPrincipal', ['countries' => $countries]);
+    }
+}
+</code></pre>
+
+<li>En la vista (<code>tp5pwd/tp5/vista/pais/indexPrincipal.php</code>), puedes mostrar la lista de países de la siguiente manera:</li>
+<pre><code>
+&lt;select name="country"&gt;
+    &lt;?php foreach ($countries as $country) : ?&gt;
+        &lt;option value="&lt;?php echo $country->getIsoAlpha2(); ?&gt;"&gt;
+            &lt;?php echo $country->getName(); ?&gt;
+        &lt;/option&gt;
+    &lt;?php endforeach; ?&gt;
+&lt;/select&gt;
+</code></pre>
+
+<li>Rinvex/Countries también permite obtener información detallada de un país específico, por ejemplo, para mostrar los datos completos de un país seleccionado:</li>
+<pre><code>
+$country = CountryLoader::country('US'); // Código ISO del país
+echo 'Nombre: ' . $country->getName();
+echo 'Moneda: ' . $country->getCurrency()['iso_4217_code'];
+</code></pre>
+
+
+<h3>Paso 7: Ejecutar el proyecto</h3>
 <p>Ubica el proyecto en la carpeta <code>htdocs</code> de XAMPP y arranca tu servidor:</p>
 <p>Inicia Apache  y MySql</p>
 <p>Visita <code>http://localhost/tp5pwd/tp5/vista/pais/indexPrincipal.php</code> en tu navegador para comenzar a usar la aplicación.</p>
