@@ -43,8 +43,10 @@
 <h2>Instrucciones de configuración</h2>
 
 <h3>Paso 1: Clonar el repositorio</h3>
-<pre><code>git clone https://github.com/Esteban0010/Tp5pwd.git
-cd Tp5pwd
+<pre><code>
+    cd C:\xampp\htdocs
+    git clone https://github.com/Esteban0010/Tp5pwd.git
+
 </code></pre>
 
 <h3>Paso 2: Instalar dependencias</h3>
@@ -89,7 +91,7 @@ CREATE TABLE `evaluacion` (
 <p>Ubica el proyecto en la carpeta <code>htdocs</code> de XAMPP y arranca tu servidor:</p>
 <pre><code>php -S localhost:8000
 </code></pre>
-<p>Visita <code>http://localhost:8000</code> en tu navegador para comenzar a usar la aplicación.</p>
+<p>Visita <code>http://localhost/tp5pwd/tp5/vista/pais/indexPrincipal.php</code> en tu navegador para comenzar a usar la aplicación.</p>
 
 <h2>Uso</h2>
 <ol>
