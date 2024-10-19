@@ -88,8 +88,7 @@ CREATE TABLE `evaluacion` (
 
 <h3>Paso 5: Ejecutar el proyecto</h3>
 <p>Ubica el proyecto en la carpeta <code>htdocs</code> de XAMPP y arranca tu servidor:</p>
-<pre><code>php -S localhost:8000
-</code></pre>
+<p>Inicia Apache  y MySql</p>
 <p>Visita <code>http://localhost/tp5pwd/tp5/vista/pais/indexPrincipal.php</code> en tu navegador para comenzar a usar la aplicación.</p>
 
 <h2>Uso</h2>
