@@ -35,9 +35,8 @@
     <li><code>app/controllers/NaturalLanguageController.php</code>: Maneja la interacción con la API de Google Cloud Natural Language.</li>
     <li><code>app/controllers/CountryController.php</code>: Gestiona la búsqueda y selección de países usando Rinvex/Countries.</li>
     <li><code>app/models/Comentario.php</code>: Modelo para gestionar los comentarios.</li>
-    <li><code>app/views/country.php</code>: Página para mostrar la información del país y formulario para agregar comentarios.</li>
-    <li><code>app/views/analysis.php</code>: Página para mostrar los resultados del análisis de sentimiento.</li>
-    <li><code>config/google_cloud.php</code>: Configuración de la API de Google Cloud.</li>
+    <li><code>tp5pwd/tp5/vista/pais/indexPrincipal.php</code>: Página para seleccionar pais.</li>
+    <li><code>tp5pwd/tp5/vista/pais/actionPais.php</code>: Página para mostrar los datos de pais, y agregar comentarios.</li>
 </ul>
 
 <h2>Instrucciones de configuración</h2>
