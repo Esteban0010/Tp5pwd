@@ -3,7 +3,7 @@
 
 <h2>Características</h2>
 <ul>
-    <li><strong>Búsqueda y información detallada de países</strong>: Utiliza la librería Rinvex/Countries para seleccionar un país y acceder a datos como el nombre oficial del país, el código ISO, la bandera, idiomas y más..</li>
+    <li><strong>Búsqueda y información detallada de países</strong>: Utiliza la librería Rinvex/Countries para seleccionar un país y acceder a sus datos.</li>
     <li><strong>Comentarios</strong>: Los usuarios pueden agregar comentarios sobre los países seleccionados.</li>
     <li><strong>Análisis de sentimiento</strong>: La API de Google Cloud Natural Language evalúa el sentimiento del comentario (positivo, negativo o neutral).</li>
     <li><strong>MVC</strong>: Separación clara de responsabilidades mediante el patrón MVC.</li>
@@ -90,7 +90,7 @@ CREATE TABLE `evaluacion` (
 <li>Asegúrate de que la librería esté correctamente cargada en tu proyecto añadiendo la siguiente línea al inicio de tus archivos que la usen:</li>
 <pre><code>require 'vendor/autoload.php';</code></pre>
 
-<li>En el controlador de países (app/controllers/AbmPais.php</code>), usa la librería para cargar y mostrar la información de los países. Un ejemplo básico de cómo acceder a los datos es el siguiente:</li>
+<li>En el controlador de AbmPais.php (app/controllers/AbmPais.php</code>), usa la librería para cargar y enviar la información del pais al script accion. Un ejemplo básico de cómo acceder a los datos es el siguiente:</li>
 <pre><code>
 use Rinvex\Country\CountryLoader; 
 class AbmPais {
